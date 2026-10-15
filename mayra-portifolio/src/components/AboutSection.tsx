@@ -22,18 +22,9 @@ export default function AboutSection() {
             séries. Cada produção é uma oportunidade de conhecer perspectivas,
             personagens e universos diferentes.
           </p>
-          <div className="about-values" aria-label="Características pessoais">
-            <div><span aria-hidden="true">✦</span><strong>Curiosidade</strong><small>Vontade de aprender.</small></div>
-            <div><span aria-hidden="true">✧</span><strong>Criatividade</strong><small>Novas perspectivas.</small></div>
-            <div><span aria-hidden="true">♡</span><strong>Evolução</strong><small>Sempre em construção.</small></div>
-          </div>
         </div>
 
         <div className="about-cinema">
-          <div className="about-clapper" aria-hidden="true">
-            <div className="about-clapper-top" />
-            <div className="about-clapper-body">ML+ <span>ORIGINAL</span></div>
-          </div>
           <button
             type="button"
             className="cinema-ticket"
