@@ -21,7 +21,7 @@ import {
   SiSpringboot,
 } from 'react-icons/si'
 
-import './TechTicker.css'
+import './Techticker.css'
 
 // ======================================
 // LISTA DE TECNOLOGIAS
