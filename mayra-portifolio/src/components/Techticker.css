@@ -1,0 +1,27 @@
+.technologies-content {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.technologies-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.technologies-tags span {
+  padding: 9px 13px;
+  border: 1px solid #363843;
+  border-radius: 5px;
+  background: #191b23;
+}
+
+@media (max-width: 900px) {
+  .technologies-content {
+    grid-template-columns: 1fr;
+  }
+}

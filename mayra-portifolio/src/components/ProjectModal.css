@@ -1,0 +1,240 @@
+/* ProjectModal — estilos do componente */
+
+.project-modal-hero-content .eyebrow {
+margin-bottom: 12px;
+}
+
+.project-modal-backdrop {
+position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(8px);
+  animation: modal-fade-in 0.2s ease;
+}
+
+.project-modal {
+position: relative;
+  width: min(900px, 100%);
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: #111319;
+  box-shadow: 0 25px 100px rgba(0, 0, 0, 0.6);
+  animation: modal-slide-in 0.25s ease;
+}
+
+.project-modal-image {
+position: relative;
+  min-height: 390px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #20232d;
+}
+
+.project-modal-image > img {
+position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-modal-image-gradient {
+position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    #111319 0%,
+    rgba(17, 19, 25, 0.85) 15%,
+    rgba(17, 19, 25, 0.2) 75%,
+    rgba(17, 19, 25, 0.25) 100%
+  );
+}
+
+.project-modal-close {
+position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(8, 9, 13, 0.85);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.project-modal-close:hover {
+background: var(--accent);
+  color: #08090d;
+  transform: rotate(90deg);
+}
+
+.project-modal-hero-content {
+position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 35px 40px 25px;
+}
+
+.project-modal-hero-content h2 {
+margin: 0 0 24px;
+  color: #fff;
+  font-size: clamp(38px, 6vw, 68px);
+  font-weight: 900;
+  letter-spacing: -2.5px;
+  line-height: 1;
+}
+
+.project-modal-actions {
+display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.project-modal-actions .button {
+width: auto;
+}
+
+.project-modal-content {
+display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 35px;
+  padding: 10px 40px 38px;
+}
+
+.project-modal-label {
+margin: 0 0 12px;
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.project-modal-description > p:last-child {
+margin: 0;
+  color: #d1d3dc;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.project-modal-tags {
+display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-modal-tags span {
+padding: 8px 11px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--surface-light);
+  color: var(--text);
+  font-size: 11px;
+}
+
+.project-modal-category {
+margin-top: 20px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+.project-modal-backdrop {
+padding: 12px;
+}
+}
+
+@media (max-width: 600px) {
+.project-modal {
+max-height: calc(100svh - 24px);
+}
+}
+
+@media (max-width: 600px) {
+.project-modal-image {
+min-height: 330px;
+}
+}
+
+@media (max-width: 600px) {
+.project-modal-hero-content {
+padding: 28px 22px 20px;
+}
+}
+
+@media (max-width: 600px) {
+.project-modal-hero-content h2 {
+font-size: 42px;
+    letter-spacing: -1.5px;
+}
+}
+
+@media (max-width: 600px) {
+.project-modal-content {
+grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 10px 22px 28px;
+}
+}
+
+@media (max-width: 600px) {
+.project-modal-actions {
+flex-direction: column;
+    align-items: stretch;
+}
+}
+
+@media (max-width: 600px) {
+.project-modal-actions .button {
+width: 100%;
+}
+}
+
+@media (max-width: 600px) {
+.project-modal-close {
+top: 12px;
+    right: 12px;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+.project-modal-backdrop, .project-modal {
+animation: none;
+}
+}

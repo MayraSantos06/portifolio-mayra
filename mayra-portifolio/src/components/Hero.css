@@ -1,0 +1,115 @@
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 800px;
+  padding: 145px 4.5% 100px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background-color: #08090d;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(8, 9, 13, 0.98) 0%,
+      rgba(8, 9, 13, 0.94) 25%,
+      rgba(8, 9, 13, 0.75) 43%,
+      rgba(8, 9, 13, 0.30) 70%,
+      rgba(8, 9, 13, 0.45) 100%
+    ),
+    linear-gradient(
+      0deg,
+      #08090d 0%,
+      transparent 35%
+    ),
+    url("/images/hero-cinema1.jpeg");
+
+  background-size: cover, cover, auto 230%;
+  background-position: center, center, 100% center;
+  background-repeat: no-repeat;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 790px;
+}
+
+.hero-category {
+  margin: 0 0 20px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  margin: 0 0 28px;
+  max-width: 950px;
+  font-size: clamp(64px, 9.5vw, 145px);
+  line-height: 0.82;
+  letter-spacing: -0.075em;
+  font-weight: 950;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  text-shadow: 3px 4px 0 rgba(65, 105, 223, 0.9);
+}
+
+.hero h1 span {
+  color: #f5f6fb;
+}
+
+.hero-description {
+  max-width: 650px;
+  margin: 0;
+  color: #e0e1e7;
+  font-size: clamp(14px, 1.2vw, 18px);
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 32px;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 760px;
+    padding: 190px 6% 90px;
+    background-position: center, center, 58% center;
+  }
+
+  .hero h1 {
+    font-size: clamp(55px, 15vw, 86px);
+    letter-spacing: -0.07em;
+  }
+
+  .hero-category {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,81 @@
+/* CurriculumSection — estilos do componente */
+
+.curriculum-section h2 {
+margin: 0 0 20px;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -2.5px;
+}
+
+.curriculum-section h2 span {
+color: var(--accent);
+}
+
+.curriculum-section > div > p:last-child {
+max-width: 650px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.curriculum-section {
+display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.curriculum-section > div {
+max-width: 720px;
+}
+
+.curriculum-content {
+display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.curriculum-label {
+color: var(--green);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.curriculum-content h3 {
+margin: 15px 0 10px;
+  font-size: 25px;
+}
+
+.curriculum-content p {
+max-width: 600px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+.curriculum-section h2 {
+font-size: clamp(34px, 9vw, 48px);
+    letter-spacing: -1.5px;
+}
+}
+
+@media (max-width: 600px) {
+.curriculum-section, .curriculum-content {
+align-items: flex-start;
+    flex-direction: column;
+}
+}
+
+@media (max-width: 600px) {
+.curriculum-content {
+padding: 22px;
+}
+}

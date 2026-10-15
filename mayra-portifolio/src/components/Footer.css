@@ -1,0 +1,45 @@
+/* Footer — estilos do componente */
+
+.footer a:last-child {
+color: #dedfe5;
+  font-size: 13px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer a:last-child:hover {
+color: var(--accent);
+}
+
+.footer {
+min-height: 90px;
+  padding: 25px 4.5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--border);
+  background: #08090d;
+}
+
+.footer p {
+color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+.footer {
+flex-wrap: wrap;
+    padding: 25px 6%;
+}
+}
+
+@media (max-width: 600px) {
+.footer p {
+flex-basis: 100%;
+    order: 3;
+    text-align: left;
+    line-height: 1.7;
+}
+}
