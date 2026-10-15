@@ -1,162 +1,18 @@
-:root {
-  --background: #08090d;
-  --surface: #111319;
-  --surface-light: #1b1e27;
-  --text: #f5f6fb;
-  --muted: #a5a9b5;
-  --accent: #ff555d;
-  --blue: #4169df;
-  --green: #48e98a;
-  --border: #2b2e38;
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  overflow: clip;
 }
 
-/* ========================================
-   ESTILOS GERAIS
-======================================== */
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+main {
+  width: 100%;
 }
 
 body {
-  margin: 0;
   background: var(--background);
+}
+
+section {
   color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* ========================================
-   BOTÕES COMPARTILHADOS
-======================================== */
-
-.button {
-  min-height: 52px;
-  padding: 0 23px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 11px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 800;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.button:hover {
-  transform: translateY(-2px);
-}
-
-.button-primary {
-  color: #0b0c10;
-  background: #f5f6fb;
-}
-
-.button-primary:hover {
-  background: #dfe5ff;
-}
-
-.button-secondary {
-  color: var(--text);
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(35, 36, 42, 0.9);
-}
-
-.button-secondary:hover {
-  background: #343640;
-  border-color: rgba(255, 255, 255, 0.45);
-}
-
-/* ========================================
-   ESTRUTURA DAS SEÇÕES
-======================================== */
-
-.section {
-  padding: 100px 4.5%;
-}
-
-.section-heading {
-  max-width: 900px;
-  margin-bottom: 38px;
-}
-
-.eyebrow {
-  margin: 0 0 12px;
-  color: var(--accent);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 3px;
-}
-
-/* ========================================
-   TÍTULOS COMPARTILHADOS
-======================================== */
-
-.section-heading h2,
-.curriculum-section h2 {
-  margin: 0 0 20px;
-  font-size: clamp(34px, 5vw, 64px);
-  line-height: 1.08;
-  letter-spacing: -2.5px;
-}
-
-.section-heading h2 span,
-.curriculum-section h2 span {
-  color: var(--accent);
-}
-
-.section-heading > p:last-child,
-.curriculum-section > div > p:last-child {
-  max-width: 650px;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-/* ========================================
-   RESPONSIVIDADE GLOBAL
-======================================== */
-
-@media (max-width: 1000px) {
-  .section {
-    padding: 80px 6%;
-  }
-}
-
-@media (max-width: 600px) {
-  html {
-    scroll-padding-top: 150px;
-  }
-
-  .section {
-    padding: 65px 6%;
-  }
-
-  .section-heading h2,
-  .curriculum-section h2 {
-    font-size: clamp(34px, 9vw, 48px);
-    letter-spacing: -1.5px;
-  }
-
-  .button {
-    width: 100%;
-  }
 }

@@ -1,7 +1,7 @@
 
+import { useState } from 'react'
 import './App.css'
 
-// Componentes do portfólio
 import Header from './components/Header'
 import Hero from './components/Hero'
 import AboutSection from './components/AboutSection'
@@ -11,30 +11,35 @@ import ExperiencesSection from './components/ExperiencesSection'
 import CurriculumSection from './components/Curriculumsection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
-import FilmSection from './components/FilmSection'
 
 function App() {
+  const [isCurriculumOpen, setIsCurriculumOpen] = useState(false)
+
   return (
     <>
-      <Header />
+      <Header
+        onOpenCurriculum={() => setIsCurriculumOpen(true)}
+      />
 
       <main>
-        <Hero />
+        <Hero
+          onOpenCurriculum={() => setIsCurriculumOpen(true)}
+        />
 
         <AboutSection />
-        
         <TechTicker />
-
         <ProjectsSection />
-
         <ExperiencesSection />
-
-        <CurriculumSection />
-
         <ContactSection />
       </main>
 
       <Footer />
+
+      {isCurriculumOpen && (
+        <CurriculumSection
+          onClose={() => setIsCurriculumOpen(false)}
+        />
+      )}
     </>
   )
 }

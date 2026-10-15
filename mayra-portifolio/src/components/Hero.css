@@ -1,115 +1,364 @@
 
+/* ==================================
+   HERO — CRIMSON & ICE BLUE
+================================== */
+
 .hero {
   position: relative;
-  width: 100%;
-  min-height: 800px;
-  padding: 145px 4.5% 100px;
+  isolation: isolate;
 
   display: flex;
   align-items: center;
 
-  overflow: hidden;
-  isolation: isolate;
+  width: 100%;
+  min-height: 100vh;
+  padding: 120px 5% 100px;
 
-  background-color: #08090d;
+  background-color: #12141b;
+  background-image: url('/images/hero-cinema1.jpeg');
 
-  background-image:
-    linear-gradient(
-      90deg,
-      rgba(8, 9, 13, 0.98) 0%,
-      rgba(8, 9, 13, 0.94) 25%,
-      rgba(8, 9, 13, 0.75) 43%,
-      rgba(8, 9, 13, 0.30) 70%,
-      rgba(8, 9, 13, 0.45) 100%
-    ),
-    linear-gradient(
-      0deg,
-      #08090d 0%,
-      transparent 35%
-    ),
-    url("/images/hero-cinema1.jpeg");
-
-  background-size: cover, cover, auto 230%;
-  background-position: center, center, 100% center;
+  /* Foto com menos zoom */
+  background-size: auto 220%;
+  background-position: right center;
   background-repeat: no-repeat;
+
+  overflow: hidden;
 }
+
+/* ==================================
+   DEGRADÊ LATERAL
+================================== */
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to right,
+    #12141b 0%,
+    #12141b 15%,
+    rgba(18, 20, 27, 0.98) 28%,
+    rgba(18, 20, 27, 0.85) 40%,
+    rgba(18, 20, 27, 0.45) 55%,
+    rgba(18, 20, 27, 0.1) 72%,
+    transparent 85%
+  );
+}
+
+/* ==================================
+   DEGRADÊ INFERIOR
+================================== */
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(18, 20, 27, 0.05) 55%,
+    rgba(18, 20, 27, 0.25) 65%,
+    rgba(18, 20, 27, 0.6) 75%,
+    rgba(18, 20, 27, 0.9) 88%,
+    #12141b 100%
+  );
+}
+
+/* ==================================
+   CONTEÚDO
+================================== */
 
 .hero-content {
   position: relative;
   z-index: 2;
+
   width: 100%;
-  max-width: 790px;
+  max-width: 650px;
 }
 
-.hero-category {
-  margin: 0 0 20px;
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 3px;
-}
+/* ==================================
+   TÍTULO
+================================== */
 
 .hero h1 {
-  margin: 0 0 28px;
-  max-width: 950px;
-  font-size: clamp(64px, 9.5vw, 145px);
-  line-height: 0.82;
-  letter-spacing: -0.075em;
-  font-weight: 950;
+  margin: 0;
+
+  color: #f3f5f8;
+  font-family: 'Space Grotesk', sans-serif;
+
+  font-size: clamp(70px, 8.5vw, 140px);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -5px;
+
   text-transform: uppercase;
-  overflow-wrap: anywhere;
-  text-shadow: 3px 4px 0 rgba(65, 105, 223, 0.9);
 }
+
+/* Destaque discreto no nome */
 
 .hero h1 span {
-  color: #f5f6fb;
+  color: #f3f5f8;
+  text-shadow: 3px 3px 0 rgba(212, 61, 87, 0.8);
 }
 
+/* ==================================
+   CATEGORIA
+================================== */
+
+.hero-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  margin: 28px 0 18px;
+
+  color: #8cc8e8;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero-category::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: #d43d57;
+}
+
+/* ==================================
+   DESCRIÇÃO
+================================== */
+
 .hero-description {
-  max-width: 650px;
+  max-width: 580px;
   margin: 0;
-  color: #e0e1e7;
-  font-size: clamp(14px, 1.2vw, 18px);
+
+  color: #c8cfdb;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1.8;
 }
+
+/* ==================================
+   BOTÕES
+================================== */
 
 .hero-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 13px;
-  margin-top: 32px;
+  gap: 14px;
+  margin-top: 30px;
 }
 
-@media (max-width: 1000px) {
-  .hero {
-    padding-right: 6%;
-    padding-left: 6%;
+.hero .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  min-height: 48px;
+  padding: 14px 24px;
+
+  border-radius: 8px;
+
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.hero .button:hover {
+  transform: translateY(-3px);
+}
+
+/* BOTÃO PRINCIPAL — VERMELHO */
+
+.hero .button-primary {
+  border: 1px solid #d43d57;
+  background: #d43d57;
+  color: #fff;
+}
+
+.hero .button-primary:hover {
+  background: #e6536c;
+  border-color: #e6536c;
+
+  box-shadow:
+    0 8px 28px rgba(212, 61, 87, 0.25);
+}
+
+/* BOTÃO SECUNDÁRIO — AZUL */
+
+.hero .button-secondary {
+  border: 1px solid rgba(140, 200, 232, 0.5);
+  background: rgba(35, 39, 53, 0.72);
+  color: #8cc8e8;
+
+  backdrop-filter: blur(8px);
+}
+
+.hero .button-secondary:hover {
+  background: rgba(140, 200, 232, 0.12);
+  border-color: #8cc8e8;
+
+  box-shadow:
+    0 8px 28px rgba(140, 200, 232, 0.1);
+}
+
+/* ==================================
+   RESPONSIVIDADE — TABLET
+================================== */
+
+@media (max-width: 768px) {
+   .hero {
+    min-height: 85vh;
+    padding: 150px 6% 90px;
+
+    background-size: auto 75%;
+    background-position: 75% center;
   }
-}
 
-@media (max-width: 600px) {
-  .hero {
-    min-height: 760px;
-    padding: 190px 6% 90px;
-    background-position: center, center, 58% center;
+  .hero::before {
+    background: linear-gradient(
+      to right,
+      rgba(18, 20, 27, 0.96),
+      rgba(18, 20, 27, 0.7) 70%,
+      rgba(18, 20, 27, 0.4)
+    );
   }
 
   .hero h1 {
-    font-size: clamp(55px, 15vw, 86px);
-    letter-spacing: -0.07em;
-  }
-
-  .hero-category {
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-size: clamp(60px, 12vw, 100px);
+    letter-spacing: -3px;
   }
 
   .hero-description {
     font-size: 14px;
   }
+}
+
+/* ==================================
+   RESPONSIVIDADE — CELULAR
+================================== */
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 160px 6% 80px;
+    background-position: 68% center;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 13vw, 70px);
+    letter-spacing: -2px;
+  }
+
+  .hero-category {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
 
   .hero-buttons {
-    align-items: stretch;
-    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero .button {
+    padding: 12px 18px;
+    font-size: 12px;
+  }
+}
+
+/* ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .button {
+    transition: none;
+  }
+}
+
+/* ==================================
+   HERO — INFORMAÇÕES CINEMATOGRÁFICAS
+================================== */
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  margin: 26px 0 22px;
+
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* RELEVÂNCIA */
+
+.hero-relevance {
+  color: #4ade80;
+  font-weight: 700;
+}
+
+/* ANO */
+
+.hero-year {
+  color: #f3f5f8;
+}
+
+/* CLASSIFICAÇÃO */
+
+.hero-rating {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 30px;
+  height: 28px;
+  padding: 0 5px;
+
+  border: 1px solid rgba(243, 245, 248, 0.8);
+  border-radius: 3px;
+
+  color: #f3f5f8;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* TEMPORADAS */
+
+.hero-seasons {
+  color: #f3f5f8;
+  font-weight: 600;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 480px) {
+  .hero-meta {
+    gap: 10px;
+    margin: 22px 0 18px;
+    font-size: 12px;
+  }
+
+  .hero-rating {
+    min-width: 27px;
+    height: 25px;
+    font-size: 11px;
   }
 }

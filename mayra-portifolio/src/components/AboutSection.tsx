@@ -9,7 +9,7 @@ export default function AboutSection() {
     <section className="section about-section" id="sobre">
       <div className="about-layout">
         <div className="about-copy">
-          <p className="eyebrow">ML+ ORIGINAL · POR TRÁS DAS CÂMERAS</p>
+        
           <h2>Sobre mim<span>.</span></h2>
           <p>
             Sou estudante de Engenharia de Software e gosto de aprender,
@@ -44,7 +44,7 @@ export default function AboutSection() {
             <span className="ticket-main">
               <span className="ticket-kicker">ACESSO ESPECIAL · SESSÃO LIVRE</span>
               <strong>FILMES<br />& SÉRIES<span>.</span></strong>
-              <span className="ticket-description">Histórias que me inspiram e fazem parte da minha jornada.</span>
+              <span className="ticket-description">Filmes e Series que já assisti.</span>
               <span className="ticket-action">EXPLORAR MINHA LISTA <span aria-hidden="true">↗</span></span>
             </span>
             <span className="ticket-stub" aria-hidden="true">

@@ -1,20 +1,492 @@
-.about-section{position:relative;overflow:hidden;background:radial-gradient(ellipse at 90% 35%,rgba(143,22,34,.19),transparent 46%),#090a0e;color:#fff}
-.about-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(35px,6vw,100px);align-items:center;max-width:1400px;margin:0 auto}
-.about-copy h2{font-size:clamp(44px,5vw,78px);line-height:1.06;margin:12px 0 30px;letter-spacing:-2px;color:#fff}
-.about-copy h2 span{color:#ff555d}.about-copy>p:not(.eyebrow){max-width:560px;color:#b9bac5;font-size:clamp(15px,1.3vw,18px);line-height:1.8;margin:0 0 22px}
-.about-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:48px}
-.about-values>div{display:flex;flex-direction:column;gap:7px}.about-values>div>span{font-size:32px;color:#ff555d}.about-values strong{font-size:14px;color:#fff}.about-values small{font-size:12px;line-height:1.4;color:#9c9eaa}
-.about-cinema{position:relative;min-height:410px;display:flex;flex-direction:column;justify-content:center;align-items:center;perspective:1100px}
-.about-cinema:before{content:'';position:absolute;inset:4% -10%;background:radial-gradient(ellipse,rgba(221,37,57,.22),transparent 68%);pointer-events:none}
-.about-clapper{position:absolute;top:4px;right:12%;width:220px;transform:rotate(14deg);filter:drop-shadow(0 14px 25px #000a)}
-.about-clapper-top{height:38px;border:3px solid #393941;border-radius:7px 7px 0 0;background:repeating-linear-gradient(115deg,#e3e0df 0 24px,#15151a 24px 48px)}
-.about-clapper-body{padding:14px;background:#18191e;border:3px solid #393941;border-top:0;text-align:center;font-weight:900;letter-spacing:4px}.about-clapper-body span{display:block;color:#ff555d;font-size:10px;letter-spacing:2px}
-.cinema-ticket{position:relative;z-index:1;display:grid;grid-template-columns:58px minmax(0,1fr) 92px;width:min(100%,620px);min-height:245px;padding:0;border:1px solid #6a4549;border-radius:15px;background:linear-gradient(135deg,#211b20,#0d0e13 75%);color:#fff;text-align:left;cursor:pointer;transform:rotate(-5deg);box-shadow:0 25px 60px #000b;transition:transform .3s ease,box-shadow .3s ease}
-.cinema-ticket:hover,.cinema-ticket:focus-visible{transform:rotate(-2deg) translateY(-9px);box-shadow:0 32px 70px #000e,0 0 40px #ff555d22;outline:2px solid #ff555d;outline-offset:4px}
-.ticket-edge{display:flex;align-items:center;justify-content:center;border-right:1px solid #784148;writing-mode:vertical-rl;transform:rotate(180deg);color:#ff555d;font-size:13px;font-weight:800;letter-spacing:3px}
-.ticket-main{display:flex;flex-direction:column;justify-content:center;gap:12px;padding:25px 24px}.ticket-kicker{color:#ff747b;font-size:10px;font-weight:700;letter-spacing:2px}.ticket-main>strong{font-size:clamp(30px,3.5vw,54px);line-height:1.03;letter-spacing:-1.5px}.ticket-main>strong span{color:#ff555d}.ticket-description{max-width:310px;color:#bcb7bd;font-size:13px;line-height:1.5}.ticket-action{margin-top:8px;color:#ff777d;font-size:11px;font-weight:800;letter-spacing:1px}
-.ticket-stub{display:flex;flex-direction:column;align-items:center;justify-content:space-around;border-left:2px dashed #745058;padding:18px 12px;gap:10px}.ticket-stub>span:first-child{writing-mode:vertical-rl;font-size:10px;letter-spacing:2px;color:#c7bbc0}.ticket-popcorn{font-size:30px;color:#ff555d}.ticket-barcode{height:48px;width:42px;background:repeating-linear-gradient(90deg,#e7e3e5 0 2px,transparent 2px 5px,#e7e3e5 5px 6px,transparent 6px 9px)}
-.about-cinema-hint{position:relative;margin:38px 0 0;color:#a5a7b2;font-size:12px;letter-spacing:1px;text-align:center}
-@media(max-width:950px){.about-layout{grid-template-columns:1fr;gap:25px}.about-cinema{min-height:360px}.about-clapper{right:16%}}
-@media(max-width:520px){.about-values{gap:10px;margin-top:30px}.about-values strong{font-size:12px}.about-values small{font-size:11px}.about-cinema{min-height:320px}.about-clapper{width:155px;right:5%;top:0}.about-clapper-top{height:27px}.cinema-ticket{grid-template-columns:33px minmax(0,1fr) 52px;min-height:200px}.ticket-edge{font-size:9px;letter-spacing:1px}.ticket-main{padding:18px 12px;gap:8px}.ticket-main>strong{font-size:29px}.ticket-kicker{font-size:8px}.ticket-description{font-size:11px}.ticket-action{font-size:9px}.ticket-stub{padding:10px 5px}.ticket-barcode{width:23px}.about-cinema-hint{margin-top:15px}}
-@media(prefers-reduced-motion:reduce){.cinema-ticket{transition:none}}
+
+/* ==================================
+   SOBRE MIM — MODERN CINEMA
+================================== */
+
+.about-section {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 85% 45%,
+      rgba(140, 200, 232, 0.07),
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse at 15% 80%,
+      rgba(212, 61, 87, 0.06),
+      transparent 48%
+    ),
+    #12141b;
+
+  color: #f3f5f8;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ==================================
+   LAYOUT
+================================== */
+
+.about-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.15fr);
+
+  gap: clamp(35px, 6vw, 100px);
+  align-items: center;
+
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ==================================
+   TEXTO
+================================== */
+
+.about-copy h2 {
+  margin: 12px 0 30px;
+
+  color: #f3f5f8;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(44px, 5vw, 78px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -2.5px;
+}
+
+.about-copy h2 span {
+  color: #d43d57;
+}
+
+.about-copy > p:not(.eyebrow) {
+  max-width: 560px;
+  margin: 0 0 22px;
+
+  color: #b7bfcd;
+  font-size: clamp(15px, 1.3vw, 18px);
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+/* ==================================
+   VALORES
+================================== */
+
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 18px;
+  margin-top: 48px;
+}
+
+.about-values > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding-top: 15px;
+  border-top: 1px solid rgba(140, 200, 232, 0.2);
+}
+
+.about-values > div > span {
+  color: #8cc8e8;
+  font-size: 32px;
+}
+
+.about-values strong {
+  color: #f3f5f8;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.about-values small {
+  color: #9da8ba;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ==================================
+   COMPOSIÇÃO CINEMATOGRÁFICA
+================================== */
+
+.about-cinema {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 410px;
+  perspective: 1100px;
+}
+
+.about-cinema::before {
+  content: '';
+  position: absolute;
+
+  inset: 4% -10%;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(212, 61, 87, 0.12),
+    rgba(140, 200, 232, 0.04) 45%,
+    transparent 70%
+  );
+
+  pointer-events: none;
+}
+
+/* ==================================
+   CLAQUETE
+================================== */
+
+.about-clapper {
+  position: absolute;
+
+  top: 4px;
+  right: 12%;
+
+  width: 220px;
+
+  transform: rotate(14deg);
+  filter: drop-shadow(0 14px 25px rgba(0, 0, 0, 0.55));
+}
+
+.about-clapper-top {
+  height: 38px;
+
+  border: 3px solid #434b5d;
+  border-radius: 7px 7px 0 0;
+
+  background: repeating-linear-gradient(
+    115deg,
+    #e4e8ee 0 24px,
+    #171b25 24px 48px
+  );
+}
+
+.about-clapper-body {
+  padding: 14px;
+
+  background: #202532;
+  border: 3px solid #434b5d;
+  border-top: 0;
+
+  color: #f3f5f8;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.about-clapper-body span {
+  display: block;
+
+  color: #8cc8e8;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* ==================================
+   INGRESSO CINEMATOGRÁFICO
+================================== */
+
+.cinema-ticket {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns:
+    58px
+    minmax(0, 1fr)
+    92px;
+
+  width: min(100%, 620px);
+  min-height: 245px;
+  padding: 0;
+
+  border: 1px solid rgba(212, 61, 87, 0.45);
+  border-radius: 15px;
+
+  background: linear-gradient(
+    135deg,
+    #292331 0%,
+    #1c2130 55%,
+    #151922 100%
+  );
+
+  color: #f3f5f8;
+  font-family: 'Space Grotesk', sans-serif;
+  text-align: left;
+
+  cursor: pointer;
+
+  transform: rotate(-5deg);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(212, 61, 87, 0.05);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* HOVER DO INGRESSO */
+
+.cinema-ticket:hover,
+.cinema-ticket:focus-visible {
+  transform: rotate(-2deg) translateY(-9px);
+
+  border-color: #d43d57;
+
+  box-shadow:
+    0 32px 70px rgba(0, 0, 0, 0.65),
+    0 0 40px rgba(212, 61, 87, 0.18);
+
+  outline: 2px solid #d43d57;
+  outline-offset: 4px;
+}
+
+/* ==================================
+   BORDA LATERAL DO INGRESSO
+================================== */
+
+.ticket-edge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-right: 1px solid rgba(212, 61, 87, 0.35);
+
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+
+  color: #d43d57;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+/* ==================================
+   CONTEÚDO DO INGRESSO
+================================== */
+
+.ticket-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+
+  padding: 25px 24px;
+}
+
+.ticket-kicker {
+  color: #8cc8e8;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.ticket-main > strong {
+  font-size: clamp(30px, 3.5vw, 54px);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: -1.5px;
+}
+
+.ticket-main > strong span {
+  color: #d43d57;
+}
+
+.ticket-description {
+  max-width: 310px;
+
+  color: #b7bfcd;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ticket-action {
+  margin-top: 8px;
+
+  color: #8cc8e8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ==================================
+   CANHOTO DO INGRESSO
+================================== */
+
+.ticket-stub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  gap: 10px;
+  padding: 18px 12px;
+
+  border-left: 2px dashed rgba(140, 200, 232, 0.35);
+}
+
+.ticket-stub > span:first-child {
+  writing-mode: vertical-rl;
+
+  color: #c5ceda;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.ticket-popcorn {
+  color: #d43d57;
+  font-size: 30px;
+}
+
+.ticket-barcode {
+  width: 42px;
+  height: 48px;
+
+  background: repeating-linear-gradient(
+    90deg,
+    #e7edf5 0 2px,
+    transparent 2px 5px,
+    #e7edf5 5px 6px,
+    transparent 6px 9px
+  );
+}
+
+/* ==================================
+   TEXTO ABAIXO DO INGRESSO
+================================== */
+
+.about-cinema-hint {
+  position: relative;
+
+  margin: 38px 0 0;
+
+  color: #9da8ba;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* ==================================
+   TABLET
+================================== */
+
+@media (max-width: 950px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .about-cinema {
+    min-height: 360px;
+  }
+
+  .about-clapper {
+    right: 16%;
+  }
+}
+
+/* ==================================
+   CELULAR
+================================== */
+
+@media (max-width: 520px) {
+  .about-copy h2 {
+    letter-spacing: -1.5px;
+  }
+
+  .about-values {
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  .about-values strong {
+    font-size: 12px;
+  }
+
+  .about-values small {
+    font-size: 11px;
+  }
+
+  .about-cinema {
+    min-height: 320px;
+  }
+
+  .about-clapper {
+    width: 155px;
+    right: 5%;
+    top: 0;
+  }
+
+  .about-clapper-top {
+    height: 27px;
+  }
+
+  .cinema-ticket {
+    grid-template-columns:
+      33px
+      minmax(0, 1fr)
+      52px;
+
+    min-height: 200px;
+  }
+
+  .ticket-edge {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .ticket-main {
+    padding: 18px 12px;
+    gap: 8px;
+  }
+
+  .ticket-main > strong {
+    font-size: 29px;
+  }
+
+  .ticket-kicker {
+    font-size: 8px;
+  }
+
+  .ticket-description {
+    font-size: 11px;
+  }
+
+  .ticket-action {
+    font-size: 9px;
+  }
+
+  .ticket-stub {
+    padding: 10px 5px;
+  }
+
+  .ticket-barcode {
+    width: 23px;
+  }
+
+  .about-cinema-hint {
+    margin-top: 15px;
+  }
+}
+
+/* ==================================
+   ACESSIBILIDADE
+================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-ticket {
+    transition: none;
+  }
+}

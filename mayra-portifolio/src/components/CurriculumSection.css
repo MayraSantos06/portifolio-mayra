@@ -1,81 +1,208 @@
-/* CurriculumSection — estilos do componente */
 
-.curriculum-section h2 {
-margin: 0 0 20px;
-  font-size: clamp(34px, 5vw, 64px);
-  line-height: 1.08;
-  letter-spacing: -2.5px;
-}
-
-.curriculum-section h2 span {
-color: var(--accent);
-}
-
-.curriculum-section > div > p:last-child {
-max-width: 650px;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-.curriculum-section {
-display: flex;
-  justify-content: space-between;
+.curriculum-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
   align-items: center;
-  gap: 40px;
-  border-top: 1px solid var(--border);
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(12px);
 }
 
-.curriculum-section > div {
-max-width: 720px;
+.curriculum-modal {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 950px);
+  max-height: 94vh;
+  overflow: hidden;
+  background: #121319;
+  border: 1px solid #353640;
+  border-radius: 14px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
 }
 
-.curriculum-content {
-display: flex;
+.curriculum-header {
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 35px;
-  padding: 32px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--surface);
+  gap: 20px;
+  padding: 22px 28px;
 }
 
-.curriculum-label {
-color: var(--green);
-  font-size: 10px;
-  font-weight: 900;
+.curriculum-eyebrow {
+  margin: 0 0 8px;
+  color: #e50914;
+  font-size: 11px;
+  font-weight: 800;
   letter-spacing: 2px;
 }
 
-.curriculum-content h3 {
-margin: 15px 0 10px;
-  font-size: 25px;
+.curriculum-header h2 {
+  margin: 0;
+  color: white;
+  font-size: clamp(24px, 4vw, 34px);
 }
 
-.curriculum-content p {
-max-width: 600px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.8;
+.curriculum-header h2 span {
+  color: #e50914;
+}
+
+.curriculum-close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #383944;
+  border-radius: 50%;
+  background: #22232c;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.curriculum-close:hover {
+  background: #e50914;
+}
+
+.curriculum-viewer {
+  flex: 1;
+  min-height: 0;
+  height: 65vh;
+  margin: 0 28px;
+  background: #262730;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.curriculum-viewer iframe {
+  display: block;
+  width: 100%;
+  height: 65vh;
+  border: 0;
+}
+
+.curriculum-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 28px;
+}
+
+.curriculum-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.curriculum-open {
+  color: white;
+  background: #272831;
+  border: 1px solid #41424c;
+}
+
+.curriculum-download {
+  color: white;
+  background: #e50914;
+  border: 1px solid #e50914;
+}
+
+.curriculum-actions a:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 600px) {
-.curriculum-section h2 {
-font-size: clamp(34px, 9vw, 48px);
-    letter-spacing: -1.5px;
+  .curriculum-overlay {
+    padding: 10px;
+  }
+
+  .curriculum-modal {
+    max-height: 96vh;
+  }
+
+  .curriculum-header {
+    padding: 18px;
+  }
+
+  .curriculum-viewer {
+    margin: 0 12px;
+    height: 55vh;
+  }
+
+  .curriculum-viewer iframe {
+    height: 55vh;
+  }
+
+  .curriculum-actions {
+    padding: 15px;
+  }
+
+  .curriculum-actions a {
+    flex: 1;
+    padding: 12px 10px;
+  }
 }
+.curriculum-header {
+  position: relative;
+  z-index: 20;
+  flex-shrink: 0;
 }
 
-@media (max-width: 600px) {
-.curriculum-section, .curriculum-content {
-align-items: flex-start;
-    flex-direction: column;
-}
+.curriculum-close {
+  position: relative;
+  z-index: 30;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
-@media (max-width: 600px) {
-.curriculum-content {
-padding: 22px;
+.curriculum-close svg {
+  pointer-events: none;
 }
+
+.curriculum-viewer {
+  position: relative;
+  z-index: 1;
+}
+.curriculum-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.curriculum-modal {
+  position: relative;
+  isolation: isolate;
+}
+
+.curriculum-header {
+  position: relative;
+  z-index: 100;
+}
+
+.curriculum-close {
+  position: relative;
+  z-index: 101;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+.curriculum-viewer {
+  position: relative;
+  z-index: 1;
+}
+
+.curriculum-viewer iframe {
+  position: relative;
+  z-index: 1;
 }

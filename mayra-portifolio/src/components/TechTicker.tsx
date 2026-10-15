@@ -23,6 +23,9 @@ import {
 
 import './TechTicker.css'
 
+// ======================================
+// LISTA DE TECNOLOGIAS
+// ======================================
 
 const skills: Skill[] = [
   {
@@ -124,6 +127,22 @@ const skills: Skill[] = [
     category: 'Banco de Dados',
   },
 ]
+
+// ======================================
+// CATEGORIAS DOS FILTROS
+// ======================================
+
+const categories = [
+  'Frontend',
+  'Backend',
+  'Banco de Dados',
+  'Ferramentas',
+]
+
+// ======================================
+// SEÇÃO TECNOLOGIAS
+// ======================================
+
 export default function TechTicker() {
   return (
     <section
@@ -131,6 +150,9 @@ export default function TechTicker() {
       id="tecnologias"
     >
       <div className="technologies-content">
+
+        {/* APRESENTAÇÃO */}
+
         <div className="technologies-text">
           <p className="eyebrow">
             MEU UNIVERSO TECNOLÓGICO
@@ -151,9 +173,11 @@ export default function TechTicker() {
           </p>
 
           <p className="technologies-description">
-            Explore o globo e descubra as
-            linguagens, ferramentas e tecnologias
+            Explore minhas habilidades e descubra
+            as linguagens, ferramentas e tecnologias
             que fazem parte do meu desenvolvimento.
+            Escolha entre visualizar em um globo
+            interativo ou em cards.
           </p>
 
           <div className="technologies-tags">
@@ -162,11 +186,9 @@ export default function TechTicker() {
             <span>Banco de Dados</span>
             <span>Aprendizado Contínuo</span>
           </div>
-
-          <p className="technologies-hint">
-            ↗ Arraste o globo para explorar
-          </p>
         </div>
+
+        {/* GLOBO 3D E CARDS */}
 
         <div className="technologies-globe">
           <SkillsSection
@@ -174,6 +196,7 @@ export default function TechTicker() {
             categories={categories}
           />
         </div>
+
       </div>
     </section>
   )
