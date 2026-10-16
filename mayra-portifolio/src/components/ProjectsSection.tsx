@@ -69,6 +69,7 @@ const projects: Project[] = [
       { pt: 'CSS', en: 'CSS' },
       { pt: 'JavaScript', en: 'JavaScript' },
     ],
+    link: 'https://github.com/MayraSantos06/Gerenciador-de-Pedidos',
   },
   {
     id: 3,
@@ -88,6 +89,7 @@ const projects: Project[] = [
       { pt: 'CSS', en: 'CSS' },
       { pt: 'JavaScript', en: 'JavaScript' },
     ],
+    link: 'https://univacinas-hpwh.onrender.com/',
   },
 ]
 
@@ -184,10 +186,6 @@ export default function ProjectsSection() {
                   )
                 }}
               />
-
-              <span className="project-original">
-                ML+ ORIGINAL
-              </span>
 
               {/* OVERLAY */}
 

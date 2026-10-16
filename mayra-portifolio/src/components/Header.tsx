@@ -37,7 +37,7 @@ export default function Header({ onOpenCurriculum }: HeaderProps) {
   return (
     <header className="header">
       <a className="brand" href="#inicio" aria-label={t.home}>
-        ML<span>+</span>
+        ML
       </a>
 
       <nav className="navigation" aria-label={t.navigation}>
