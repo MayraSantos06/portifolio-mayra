@@ -4,6 +4,21 @@ Portfólio pessoal desenvolvido como atividade acadêmica do curso de **Engenhar
 
 O projeto tem como objetivo apresentar minha trajetória acadêmica, experiências, conhecimentos técnicos e projetos desenvolvidos na área de tecnologia, por meio de uma aplicação web interativa e responsiva.
 
+## Demonstração do portfólio
+
+A seguir, são apresentadas capturas de tela da aplicação desenvolvida.
+
+### Página inicial
+
+![Página inicial do portfólio](mayra-portifolio/public/images/ml-inicio.png)
+
+### Projetos
+
+![Seção de projetos](mayra-portifolio/public/images/print-projetos.png)
+
+### Tecnologias
+
+![Seção de tecnologias](mayra-portifolio/public/images/print-tecnologias.png)
 ## 1. Sobre o projeto
 
 O **ML+** foi desenvolvido utilizando React, TypeScript e Vite, com uma identidade visual inspirada em interfaces cinematográficas.
