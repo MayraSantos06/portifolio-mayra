@@ -1,9 +1,60 @@
 
 import { useState, type FormEvent } from 'react'
 import { FiArrowRight, FiMail, FiStar } from 'react-icons/fi'
+import { useLanguage } from '../contexts/LanguageContext'
 import './ContactSection.css'
 
+const translations = {
+  pt: {
+    eyebrow: 'ML+ ORIGINAL · ÚLTIMA CENA',
+    heading1: 'O próximo capítulo',
+    heading2: 'começa',
+    headingHighlight: 'aqui.',
+    introduction:
+      'Toda boa história começa com uma conexão. Tem uma oportunidade, um projeto ou uma ideia? Garanta seu ingresso para uma nova conversa.',
+    presents: 'APRESENTA',
+    ticketSubtitle: 'INGRESSO PARA UMA NOVA CONEXÃO',
+    nameLabel: 'NOME DO CONVIDADO',
+    namePlaceholder: 'Seu nome',
+    emailLabel: 'E-MAIL',
+    emailPlaceholder: 'seu@email.com',
+    subjectLabel: 'TÍTULO DA HISTÓRIA',
+    subjectPlaceholder: 'Qual é o assunto?',
+    messageLabel: 'ESCREVA O PRÓXIMO CAPÍTULO',
+    messagePlaceholder: 'Sua mensagem começa aqui...',
+    submit: 'ENVIAR MENSAGEM',
+    notice:
+      'Seu aplicativo de e-mail foi solicitado. Confirme o envio da mensagem por lá.',
+    emailName: 'Nome',
+  },
+  en: {
+    eyebrow: 'ML+ ORIGINAL · FINAL SCENE',
+    heading1: 'The next chapter',
+    heading2: 'starts',
+    headingHighlight: 'here.',
+    introduction:
+      'Every great story begins with a connection. Have an opportunity, a project, or an idea? Get your ticket to a new conversation.',
+    presents: 'PRESENTS',
+    ticketSubtitle: 'YOUR TICKET TO A NEW CONNECTION',
+    nameLabel: 'GUEST NAME',
+    namePlaceholder: 'Your name',
+    emailLabel: 'EMAIL',
+    emailPlaceholder: 'you@example.com',
+    subjectLabel: 'STORY TITLE',
+    subjectPlaceholder: 'What is this about?',
+    messageLabel: 'WRITE THE NEXT CHAPTER',
+    messagePlaceholder: 'Your message starts here...',
+    submit: 'SEND MESSAGE',
+    notice:
+      'Your email application has been requested. Please confirm and send the message there.',
+    emailName: 'Name',
+  },
+}
+
 export default function ContactSection() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [assunto, setAssunto] = useState('')
@@ -16,7 +67,7 @@ export default function ContactSection() {
     const destinatario = 'luizamayra2006@gmail.com'
 
     const corpo = [
-      `Nome: ${nome}`,
+      `${t.emailName}: ${nome}`,
       `E-mail: ${email}`,
       '',
       mensagem,
@@ -34,20 +85,16 @@ export default function ContactSection() {
     <section className="contact-section" id="contato">
       <div className="contact-intro">
         <span className="contact-eyebrow">
-          ML+ ORIGINAL · ÚLTIMA CENA
+          {t.eyebrow}
         </span>
 
         <h2>
-          O próximo capítulo
+          {t.heading1}
           <br />
-          começa <span>aqui.</span>
+          {t.heading2} <span>{t.headingHighlight}</span>
         </h2>
 
-        <p>
-          Toda boa história começa com uma conexão.
-          Tem uma oportunidade, um projeto ou uma ideia?
-          Garanta seu ingresso para uma nova conversa.
-        </p>
+        <p>{t.introduction}</p>
       </div>
 
       <div className="vintage-ticket">
@@ -61,7 +108,7 @@ export default function ContactSection() {
 
             <div className="ticket-title">
               <span className="ticket-edition">
-                APRESENTA
+                {t.presents}
               </span>
 
               <h3>
@@ -76,9 +123,7 @@ export default function ContactSection() {
                 <FiStar />
               </div>
 
-              <p>
-                INGRESSO PARA UMA NOVA CONEXÃO
-              </p>
+              <p>{t.ticketSubtitle}</p>
             </div>
 
             <div className="ticket-divider" />
@@ -90,13 +135,13 @@ export default function ContactSection() {
               <div className="vintage-form-row">
                 <div className="vintage-field">
                   <label htmlFor="contact-name">
-                    NOME DO CONVIDADO
+                    {t.nameLabel}
                   </label>
 
                   <input
                     id="contact-name"
                     type="text"
-                    placeholder="Seu nome"
+                    placeholder={t.namePlaceholder}
                     value={nome}
                     onChange={(event) =>
                       setNome(event.target.value)
@@ -107,13 +152,13 @@ export default function ContactSection() {
 
                 <div className="vintage-field">
                   <label htmlFor="contact-email">
-                    E-MAIL
+                    {t.emailLabel}
                   </label>
 
                   <input
                     id="contact-email"
                     type="email"
-                    placeholder="seu@email.com"
+                    placeholder={t.emailPlaceholder}
                     value={email}
                     onChange={(event) =>
                       setEmail(event.target.value)
@@ -125,13 +170,13 @@ export default function ContactSection() {
 
               <div className="vintage-field">
                 <label htmlFor="contact-subject">
-                  TÍTULO DA HISTÓRIA
+                  {t.subjectLabel}
                 </label>
 
                 <input
                   id="contact-subject"
                   type="text"
-                  placeholder="Qual é o assunto?"
+                  placeholder={t.subjectPlaceholder}
                   value={assunto}
                   onChange={(event) =>
                     setAssunto(event.target.value)
@@ -142,12 +187,12 @@ export default function ContactSection() {
 
               <div className="vintage-field">
                 <label htmlFor="contact-message">
-                  ESCREVA O PRÓXIMO CAPÍTULO
+                  {t.messageLabel}
                 </label>
 
                 <textarea
                   id="contact-message"
-                  placeholder="Sua mensagem começa aqui..."
+                  placeholder={t.messagePlaceholder}
                   rows={4}
                   value={mensagem}
                   onChange={(event) =>
@@ -162,14 +207,13 @@ export default function ContactSection() {
                 className="vintage-submit"
               >
                 <FiMail />
-                ENVIAR MENSAGEM
+                {t.submit}
                 <FiArrowRight />
               </button>
 
               {aviso && (
                 <p className="ticket-notice" role="status">
-                  Seu aplicativo de e-mail foi solicitado.
-                  Confirme o envio da mensagem por lá.
+                  {t.notice}
                 </p>
               )}
             </form>
@@ -181,7 +225,10 @@ export default function ContactSection() {
               <strong>ONE</strong>
             </div>
 
-            <div className="stub-stars" aria-hidden="true">
+            <div
+              className="stub-stars"
+              aria-hidden="true"
+            >
               ★
               <br />
               ★
@@ -205,16 +252,6 @@ export default function ContactSection() {
       </div>
 
       
-<div className="classic-ending">
-  <div className="ending-rings" aria-hidden="true" />
-
-  <div className="classic-ending-content">
-    <h2 className="classic-ending-title">
-      The End
-    </h2>
-  </div>
-</div>
-
     </section>
   )
 }

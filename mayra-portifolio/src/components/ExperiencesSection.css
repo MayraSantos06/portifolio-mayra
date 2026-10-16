@@ -1,22 +1,23 @@
 
+/* ======================================
+   SEÇÃO DE EXPERIÊNCIAS
+====================================== */
+
 .experiences-section {
   background: #090a0e;
   overflow: hidden;
 }
 
+/* ======================================
+   CONTROLES DE NAVEGAÇÃO
+====================================== */
+
 .film-toolbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: 20px;
   margin: 40px 0 16px;
-}
-
-.film-toolbar > span {
-  color: #a5a9b5;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
 }
 
 .film-controls {
@@ -41,6 +42,10 @@
   border-color: #ff555d;
 }
 
+/* ======================================
+   ESTRUTURA DA PELÍCULA
+====================================== */
+
 .film-strip {
   background: #222329;
   padding: 14px 0;
@@ -62,6 +67,10 @@
   border-radius: 2px;
 }
 
+/* ======================================
+   CARROSSEL
+====================================== */
+
 .film-track {
   display: flex;
   gap: 18px;
@@ -76,80 +85,131 @@
   display: none;
 }
 
+/* ======================================
+   CARDS DAS CENAS
+====================================== */
+
 .film-frame {
   flex: 0 0 calc((100% - 36px) / 3);
   min-width: 0;
-  background: #111218;
+  min-height: 350px;
+  overflow: hidden;
+  background: #151820;
   border: 1px solid #353741;
+  border-radius: 6px;
   scroll-snap-align: start;
   transition: transform 0.3s, border-color 0.3s;
 }
 
 .film-frame:hover {
   transform: translateY(-5px);
-  border-color: #ff555d;
+  border-color: #8cc8e8;
 }
 
-.film-image {
-  position: relative;
-  height: 190px;
-  overflow: hidden;
-  background:
-    linear-gradient(135deg, #30202a, #10131c 65%);
-}
+/* ======================================
+   CONTEÚDO DA CENA
+====================================== */
 
-.film-image img {
-  width: 100%;
+.film-scene-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 350px;
   height: 100%;
-  display: block;
-  object-fit: cover;
-  transition: transform 0.4s;
+  box-sizing: border-box;
+  padding: 25px;
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255, 85, 93, 0.1),
+      transparent 45%
+    ),
+    #151820;
 }
 
-.film-frame:hover .film-image img {
-  transform: scale(1.06);
-}
+/* ======================================
+   TOPO DA CENA
+====================================== */
 
-.film-scene {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 6px 10px;
-  background: #ff555d;
-  color: white;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.film-info {
-  padding: 20px;
-}
-
-.film-meta {
+.film-scene-top {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.film-scene-number {
   color: #ff555d;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.film-scene-period {
+  color: #a6a9b5;
+  font-size: 11px;
+  text-align: right;
+}
+
+/* ======================================
+   INFORMAÇÕES PRINCIPAIS
+====================================== */
+
+.film-scene-main {
+  padding: 28px 0;
+}
+
+.film-scene-category {
+  display: block;
+  color: #8cc8e8;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
-.film-info h3 {
-  margin: 0 0 10px;
-  color: white;
-  font-size: 20px;
+.film-scene-main h3 {
+  margin: 12px 0;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-.film-info p {
+.film-scene-line {
+  width: 42px;
+  height: 3px;
+  margin: 18px 0;
+  background: #ff555d;
+  border-radius: 4px;
+}
+
+.film-scene-main p {
   margin: 0;
-  color: #a5a9b5;
+  color: #b5b8c4;
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
+
+/* ======================================
+   RODAPÉ DA CENA
+====================================== */
+
+.film-scene-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #747987;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+/* ======================================
+   INSTRUÇÃO DO CARROSSEL
+====================================== */
 
 .film-hint {
   margin-top: 18px;
@@ -159,23 +219,33 @@
   letter-spacing: 1px;
 }
 
+/* ======================================
+   RESPONSIVIDADE - TABLET
+====================================== */
+
 @media (max-width: 1000px) {
   .film-frame {
     flex-basis: calc((100% - 18px) / 2);
   }
 }
 
+/* ======================================
+   RESPONSIVIDADE - CELULAR
+====================================== */
+
 @media (max-width: 650px) {
   .film-frame {
     flex-basis: 85%;
+    min-height: 330px;
   }
 
-  .film-image {
-    height: 180px;
+  .film-scene-content {
+    min-height: 330px;
+    padding: 20px;
   }
 
-  .film-toolbar > span {
-    font-size: 10px;
+  .film-scene-main h3 {
+    font-size: 21px;
   }
 
   .film-controls button {
@@ -184,13 +254,16 @@
   }
 }
 
+/* ======================================
+   ACESSIBILIDADE
+====================================== */
+
 @media (prefers-reduced-motion: reduce) {
   .film-track {
     scroll-behavior: auto;
   }
 
-  .film-frame,
-  .film-image img {
+  .film-frame {
     transition: none;
   }
 }

@@ -70,3 +70,69 @@ a {
 section[id] {
   scroll-margin-top: 90px;
 }
+
+/* ======================================
+   ML+ — IDENTIDADE DOS TÍTULOS
+====================================== */
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin: 0 0 22px;
+
+  color: #8cc8e8;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.section-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  flex-shrink: 0;
+  background: #d43d57;
+}
+
+
+/* TÍTULOS PADRONIZADOS */
+
+.section-title {
+  margin: 0;
+  color: #f3f5f8;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -2.5px;
+}
+
+
+.section-title .title-highlight {
+  color: #d43d57;
+}
+
+.section-description {
+  max-width: 650px;
+  margin: 24px 0 0;
+
+  color: #b7bfcd;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .section-title {
+    font-size: clamp(32px, 8vw, 46px);
+    letter-spacing: -1.4px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+}

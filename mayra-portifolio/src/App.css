@@ -1,18 +1,406 @@
 
+/* ======================================
+   ML+ — PALETA CINEMATOGRÁFICA
+====================================== */
+
+:root {
+  --ml-black: #090a0e;
+  --ml-background: #12141b;
+  --ml-graphite: #171923;
+  --ml-slate: #202330;
+  --ml-blue: #252b3b;
+  --ml-wine: #211d2c;
+  --ml-steel: #22232d;
+  --ml-plum: #281b29;
+  --ml-accent: #d43d57;
+
+  /* PADRÃO DOS TÍTULOS */
+  --ml-title-color: #f3f5f8;
+  --ml-title-accent: #d43d57;
+  --ml-title-blue: #8cc8e8;
+}
+
+/* ======================================
+   ESTRUTURA GERAL
+====================================== */
+
 #root {
-  min-height: 100vh;
   width: 100%;
+  min-height: 100vh;
   overflow: clip;
 }
 
-main {
-  width: 100%;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  margin: 0;
+  background: var(--ml-background);
+  color: var(--text);
+}
+
+main {
+  position: relative;
+  display: flow-root;
+  width: 100%;
+  background: var(--ml-background);
 }
 
 section {
   color: var(--text);
+}
+
+/* ======================================
+   ELIMINAR ESPAÇOS ENTRE SEÇÕES
+====================================== */
+
+main > .hero,
+main > .reveal-section,
+main > .technologies-section {
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+main > .reveal-section > section {
+  margin: 0;
+}
+
+/* ======================================
+   HERO
+====================================== */
+
+main > .hero {
+  background-color: #12141b;
+}
+
+/* ======================================
+   SOBRE MIM
+====================================== */
+
+main > .reveal-section:nth-child(2) {
+  background: linear-gradient(
+    180deg,
+    #12141b 0%,
+    #171923 45%,
+    #202330 100%
+  );
+}
+
+/* ======================================
+   TECNOLOGIAS
+====================================== */
+
+main > .technologies-section {
+  background: linear-gradient(
+    180deg,
+    #202330 0%,
+    #222637 50%,
+    #252b3b 100%
+  );
+}
+
+/* Alinhamento lateral da seção */
+
+main .technologies-section {
+  width: 100%;
+  padding: 100px 6% 110px;
+  box-sizing: border-box;
+}
+
+/* Conteúdo centralizado */
+
+main .technologies-section .technologies-text {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+/* ======================================
+   PROJETOS
+====================================== */
+
+main > .reveal-section:nth-child(4) {
+  background: linear-gradient(
+    180deg,
+    #252b3b 0%,
+    #211d2c 65%,
+    #22232d 100%
+  );
+}
+
+/* ======================================
+   EXPERIÊNCIAS
+====================================== */
+
+main > .reveal-section:nth-child(5) {
+  background: linear-gradient(
+    180deg,
+    #22232d 0%,
+    #292636 65%,
+    #281b29 100%
+  );
+}
+
+/* ======================================
+   CONTATO
+====================================== */
+
+main > .reveal-section:nth-child(6) {
+  background: linear-gradient(
+    180deg,
+    #281b29 0%,
+    #211d2c 55%,
+    #17151f 100%
+  );
+}
+
+/* ======================================
+   FUNDOS INTERNOS
+====================================== */
+
+/* Mantém os degradês externos visíveis */
+
+main > .reveal-section > section {
+  background-color: transparent;
+}
+
+/* Iluminação radial da seção Sobre mim */
+
+main > .reveal-section > .about-section {
+  background:
+    radial-gradient(
+      ellipse at 85% 45%,
+      rgba(140, 200, 232, 0.07),
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse at 15% 80%,
+      rgba(212, 61, 87, 0.06),
+      transparent 48%
+    );
+}
+
+/* ======================================
+   PADRONIZAÇÃO DOS TÍTULOS — ML+
+====================================== */
+
+/*
+  Padrão visual compartilhado:
+  - Sobre mim
+  - Tecnologias
+  - Projetos
+  - Experiências
+  - Contato
+
+  Não altera:
+  - Hero
+  - Títulos internos dos modais
+  - Títulos dos cards
+*/
+
+/* TÍTULOS PRINCIPAIS */
+
+main .about-copy h2,
+main .projects-section .section-heading h2,
+main .experiences-section .section-heading h2,
+main .contact-intro h2,
+main .technologies-section h2.technologies-title {
+  margin-top: 0;
+
+  color: var(--ml-title-color);
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 700;
+
+  line-height: 1.08;
+  letter-spacing: -2.5px;
+}
+
+/* ======================================
+   DESTAQUES EM VINHO
+====================================== */
+
+main .about-copy h2 span,
+main .projects-section .section-heading h2 span,
+main .experiences-section .section-heading h2 span,
+main .contact-intro h2 span {
+  color: var(--ml-title-accent);
+}
+
+/* ======================================
+   TECNOLOGIAS — DESTAQUES
+====================================== */
+
+/* Destaque azul-gelo */
+
+main .technologies-section .technologies-title-highlight {
+  color: var(--ml-title-blue);
+
+  text-shadow:
+    0 0 35px rgba(140, 200, 232, 0.16);
+}
+
+/* Ponto vermelho */
+
+main .technologies-section .technologies-title-dot {
+  color: var(--ml-title-accent);
+}
+
+/* ======================================
+   SUBTÍTULOS SUPERIORES
+====================================== */
+
+main .about-section .eyebrow,
+main .projects-section .eyebrow,
+main .experiences-section .eyebrow,
+main .contact-section .contact-eyebrow,
+main .technologies-section .technologies-eyebrow {
+  color: var(--ml-title-blue);
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+/* ======================================
+   LINHA CINEMATOGRÁFICA — TECNOLOGIAS
+====================================== */
+
+main .technologies-section .technologies-eyebrow::before {
+  content: "";
+  display: block;
+
+  width: 28px;
+  height: 2px;
+  flex-shrink: 0;
+
+  background: var(--ml-title-accent);
+}
+
+/* ======================================
+   RESPONSIVIDADE — TABLET
+====================================== */
+
+@media (max-width: 900px) {
+  main .technologies-section {
+    padding: 85px 6% 95px;
+  }
+}
+
+/* ======================================
+   RESPONSIVIDADE — CELULAR
+====================================== */
+
+@media (max-width: 600px) {
+
+  /* Espaçamento da seção Tecnologias */
+
+  main .technologies-section {
+    padding: 75px 6% 85px;
+  }
+
+  /* Títulos principais */
+
+  main .about-copy h2,
+  main .projects-section .section-heading h2,
+  main .experiences-section .section-heading h2,
+  main .contact-intro h2,
+  main .technologies-section h2.technologies-title {
+    font-size: clamp(32px, 8vw, 46px);
+    line-height: 1.12;
+    letter-spacing: -1.4px;
+  }
+
+  /* Subtítulos superiores */
+
+  main .about-section .eyebrow,
+  main .projects-section .eyebrow,
+  main .experiences-section .eyebrow,
+  main .contact-section .contact-eyebrow,
+  main .technologies-section .technologies-eyebrow {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+}
+
+/* ======================================
+   ACESSIBILIDADE
+====================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ======================================
+   ML+ — AJUSTE DE ESPAÇAMENTOS
+====================================== */
+
+/* Espaçamento interno das seções */
+main .projects-section,
+main .experiences-section {
+  padding: 75px 6% 85px;
+  box-sizing: border-box;
+}
+
+/* Reduz distância entre título e descrição */
+main .projects-section .section-heading h2,
+main .experiences-section .section-heading h2 {
+  margin: 0 0 18px;
+}
+
+/* Aproxima descrições dos títulos */
+main .projects-section .section-heading p,
+main .experiences-section .section-heading p {
+  margin-top: 0;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* Reduz espaço antes dos filtros */
+main .projects-section .projects-filters {
+  margin: 24px 0 28px;
+}
+
+/* Reduz distância entre os cards e a próxima seção */
+main .projects-section {
+  padding-bottom: 65px;
+}
+
+/* Ajusta o início de Experiências */
+main .experiences-section {
+  padding-top: 65px;
+}
+
+/* ======================================
+   RESPONSIVIDADE
+====================================== */
+
+@media (max-width: 600px) {
+  main .projects-section,
+  main .experiences-section {
+    padding: 55px 6% 65px;
+  }
+
+  main .projects-section .section-heading h2,
+  main .experiences-section .section-heading h2 {
+    margin-bottom: 14px;
+  }
+
+  main .projects-section .section-heading p,
+  main .experiences-section .section-heading p {
+    margin-bottom: 22px;
+  }
+
+  main .projects-section .projects-filters {
+    margin: 20px 0 24px;
+  }
 }

@@ -1,3 +1,4 @@
+
 import type { Skill } from './SkillsGlobe/SkillsGlobe'
 import SkillsSection from './SkillsSection/SkillsSection'
 
@@ -10,13 +11,11 @@ import {
   FaGithub,
   FaPython,
   FaNodeJs,
-  FaDatabase,
 } from 'react-icons/fa'
 
 import {
   SiTypescript,
   SiJavascript,
-  SiPostgresql,
   SiBootstrap,
   SiSpringboot,
 } from 'react-icons/si'
@@ -99,13 +98,6 @@ const skills: Skill[] = [
     category: 'Ferramentas',
   },
   {
-    name: 'PostgreSQL',
-    icon: SiPostgresql,
-    color: '#4169E1',
-    link: 'https://www.postgresql.org',
-    category: 'Banco de Dados',
-  },
-  {
     name: 'Bootstrap',
     icon: SiBootstrap,
     color: '#7952B3',
@@ -118,13 +110,6 @@ const skills: Skill[] = [
     color: '#6DB33F',
     link: 'https://spring.io/projects/spring-boot',
     category: 'Backend',
-  },
-  {
-    name: 'Banco de Dados',
-    icon: FaDatabase,
-    color: '#00C2A8',
-    link: 'https://www.postgresql.org',
-    category: 'Banco de Dados',
   },
 ]
 
@@ -149,47 +134,25 @@ export default function TechTicker() {
       className="section technologies-section"
       id="tecnologias"
     >
-      <div className="technologies-content">
+      <div className="technologies-text">
 
-        {/* APRESENTAÇÃO */}
+        {/* IDENTIFICAÇÃO SUPERIOR */}
+        <p className="eyebrow technologies-eyebrow">
+          MEU UNIVERSO TECNOLÓGICO
+        </p>
 
-        <div className="technologies-text">
-          <p className="eyebrow">
-            MEU UNIVERSO TECNOLÓGICO
-          </p>
+        {/* TÍTULO PADRONIZADO */}
+        
+<h2 className="section-title technologies-title">
+  Tecnologias que fazem{' '}
+  <span className="technologies-title-highlight">
+    parte da minha
+  </span>{' '}
+  jornada<span className="technologies-title-dot">.</span>
+</h2>
 
-          <h2>
-            Tecnologias que fazem
-            <br />
-            parte da minha
-            <br />
-            jornada<span>.</span>
-          </h2>
-
-          <p className="technologies-description">
-            Cada tecnologia representa uma nova
-            possibilidade de criar, aprender e
-            transformar ideias em soluções.
-          </p>
-
-          <p className="technologies-description">
-            Explore minhas habilidades e descubra
-            as linguagens, ferramentas e tecnologias
-            que fazem parte do meu desenvolvimento.
-            Escolha entre visualizar em um globo
-            interativo ou em cards.
-          </p>
-
-          <div className="technologies-tags">
-            <span>Desenvolvimento Web</span>
-            <span>Programação</span>
-            <span>Banco de Dados</span>
-            <span>Aprendizado Contínuo</span>
-          </div>
-        </div>
 
         {/* GLOBO 3D E CARDS */}
-
         <div className="technologies-globe">
           <SkillsSection
             skills={skills}

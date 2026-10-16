@@ -1,5 +1,58 @@
-.film-modal-backdrop{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;background:#000e;backdrop-filter:blur(7px)}
-.film-modal{position:relative;width:min(100%,980px);max-height:min(90vh,900px);overflow-y:auto;border:1px solid #393a43;border-radius:16px;background:#101116;color:#fff;box-shadow:0 30px 100px #000}
+
+/* ======================================
+   MODAL — ACIMA DE TODAS AS SEÇÕES
+====================================== */
+
+.film-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.film-modal {
+  position: relative;
+
+  width: min(100%, 1100px);
+  max-height: calc(100dvh - 40px);
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  border: 1px solid #393a43;
+  border-radius: 16px;
+
+  background: #101116;
+  color: #fff;
+
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.85);
+
+  overscroll-behavior: contain;
+}
+
+/* Celulares */
+
+@media (max-width: 500px) {
+  .film-modal-backdrop {
+    padding: 8px;
+  }
+
+  .film-modal {
+    width: 100%;
+    max-height: calc(100dvh - 16px);
+    border-radius: 12px;
+  }
+}
+
 .film-modal-close{position:sticky;top:15px;float:right;z-index:3;margin:15px 15px -55px 0;width:42px;height:42px;border:0;border-radius:50%;background:#050609e8;color:#fff;font-size:30px;cursor:pointer}
 .film-modal-header{padding:65px 36px 30px;background:radial-gradient(ellipse at top right,#76202a88,transparent 65%),linear-gradient(0deg,#101116,#181018)}
 .film-modal-eyebrow{color:#ff555d;font-size:11px;font-weight:800;letter-spacing:2px}.film-modal-header h2{margin:8px 0 12px;font-size:clamp(35px,5vw,60px);line-height:1.1}.film-modal-header h2 span{color:#ff555d}.film-modal-header>p:last-child{color:#b8bac6}
@@ -8,3 +61,84 @@
 .film-selected{position:sticky;bottom:0;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:20px 36px;background:#23202a;border-top:1px solid #ff555d55;box-shadow:0 -15px 30px #0007}.film-selected span{font-size:10px;letter-spacing:1px;color:#ff777d;font-weight:700}.film-selected h3{margin:5px 0;font-size:22px}.film-selected p{margin:0;color:#c2c3cb;font-size:13px;line-height:1.5}.film-selected button{border:0;background:transparent;color:#fff;font-size:25px;cursor:pointer}
 @media(max-width:800px){.film-modal-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:500px){.film-modal-backdrop{padding:8px}.film-modal{max-height:96vh}.film-modal-header{padding:55px 20px 20px}.film-modal-filters{padding:18px 20px}.film-modal-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:0 20px 25px}.film-selected{padding:18px 20px}}
 @media(prefers-reduced-motion:reduce){.film-poster-art{transition:none}}
+
+/* ======================================
+   ML+ — INTEGRAÇÃO LETTERBOXD
+====================================== */
+
+.film-letterboxd-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 20px;
+  padding: 11px 18px;
+
+  border: 1px solid #44534a;
+  border-radius: 7px;
+
+  background: #1b2620;
+  color: #a7e4b8;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition: background 0.2s, transform 0.2s;
+}
+
+.film-letterboxd-link:hover {
+  background: #26392c;
+  transform: translateY(-2px);
+}
+
+.film-status {
+  padding: 18px 36px 28px;
+  color: #b8bac6;
+  font-size: 14px;
+}
+
+.film-status button {
+  margin-top: 10px;
+  padding: 9px 16px;
+
+  border: 1px solid #d43d57;
+  border-radius: 6px;
+
+  background: transparent;
+  color: #f3f5f8;
+  cursor: pointer;
+}
+
+.film-status button:hover {
+  background: #d43d57;
+}
+
+.film-selected-rating {
+  margin: 10px 0 !important;
+  color: #f6c453 !important;
+  font-size: 19px !important;
+  letter-spacing: 3px;
+}
+
+.film-selected-link {
+  display: inline-block;
+  margin-top: 12px;
+
+  color: #a7e4b8;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.film-selected-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .film-status {
+    padding: 16px 20px 24px;
+  }
+
+  .film-letterboxd-link {
+    font-size: 12px;
+  }
+}

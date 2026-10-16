@@ -145,3 +145,68 @@
     transition: none;
   }
 }
+
+/* Seletor de idiomas */
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 7px 12px;
+
+  border: 1px solid rgba(140, 200, 232, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.language-btn {
+  border: none;
+  background: transparent;
+  padding: 3px 4px;
+
+  color: #9298a8;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.language-btn:hover {
+  color: #8cc8e8;
+}
+
+.language-btn.active {
+  color: #d43d57;
+}
+
+.language-divider {
+  color: #5c6170;
+  font-size: 12px;
+}
+
+/* Mantém o botão de currículo com aparência de link */
+
+.navigation .navigation-link {
+  appearance: none;
+  background: transparent;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Ajustes para telas menores */
+
+@media (max-width: 768px) {
+  .language-switch {
+    gap: 5px;
+    padding: 6px 9px;
+  }
+
+  .language-btn {
+    font-size: 11px;
+  }
+}

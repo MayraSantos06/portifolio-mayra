@@ -3,10 +3,16 @@
    SOBRE MIM — MODERN CINEMA
 ================================== */
 
+
+/* ==================================
+   SOBRE MIM — MODERN CINEMA
+================================== */
+
 .about-section {
   position: relative;
   overflow: hidden;
 
+  /* Efeitos de iluminação sem fundo sólido */
   background:
     radial-gradient(
       ellipse at 85% 45%,
@@ -17,12 +23,12 @@
       ellipse at 15% 80%,
       rgba(212, 61, 87, 0.06),
       transparent 48%
-    ),
-    #12141b;
+    );
 
   color: #f3f5f8;
   font-family: 'Space Grotesk', sans-serif;
 }
+
 
 /* ==================================
    LAYOUT

@@ -1,15 +1,40 @@
 
 import { useEffect } from 'react'
 import { FiDownload, FiExternalLink, FiX } from 'react-icons/fi'
+import { useLanguage } from '../contexts/LanguageContext'
 import './CurriculumSection.css'
 
 type CurriculumSectionProps = {
   onClose: () => void
 }
 
+const translations = {
+pt: {
+  eyebrow: 'ML+ ORIGINAL · DOCUMENTO PROFISSIONAL',
+  title: 'Meu currículo',
+  close: 'Fechar currículo',
+  viewerTitle: 'Visualização do meu currículo em PDF',
+  open: 'Abrir PDF',
+  download: 'Baixar currículo',
+  filename: 'Curriculo_Mayra_Luiza.pdf',
+},
+en: {
+  eyebrow: 'ML+ ORIGINAL · PROFESSIONAL DOCUMENT',
+  title: 'My Resume',
+  close: 'Close resume',
+  viewerTitle: 'Preview of my resume in PDF',
+  open: 'Open PDF',
+  download: 'Download resume',
+  filename: 'Resume_Mayra_Luiza.pdf',
+},
+}
+
 export default function CurriculumSection({
   onClose,
 }: CurriculumSectionProps) {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -28,7 +53,7 @@ export default function CurriculumSection({
     }
   }, [onClose])
 
-  const pdfUrl = `${import.meta.env.BASE_URL}Curriculo_Mayra_Luiza.pdf`
+  const pdfUrl = `${import.meta.env.BASE_URL}${t.filename}`
 
   return (
     <div
@@ -45,39 +70,35 @@ export default function CurriculumSection({
         aria-modal="true"
         aria-labelledby="curriculum-title"
       >
-        {/* CABEÇALHO */}
         <div className="curriculum-header">
           <div>
             <p className="curriculum-eyebrow">
-              ML+ ORIGINAL · DOCUMENTO PROFISSIONAL
+              {t.eyebrow}
             </p>
 
             <h2 id="curriculum-title">
-              Meu currículo<span>.</span>
+              {t.title}<span>.</span>
             </h2>
           </div>
 
-     <button
-  type="button"
-  className="curriculum-close"
-  onClick={() => {
-    onClose()
-  }}
-  aria-label="Fechar currículo"
->
-  <FiX />
-</button>
+          <button
+            type="button"
+            className="curriculum-close"
+            onClick={onClose}
+            aria-label={t.close}
+          >
+            <FiX />
+          </button>
         </div>
 
-        {/* VISUALIZAÇÃO DO PDF */}
         <div className="curriculum-viewer">
           <iframe
+            key={language}
             src={pdfUrl}
-            title="Visualização do meu currículo em PDF"
+            title={t.viewerTitle}
           />
         </div>
 
-        {/* BOTÕES */}
         <div className="curriculum-actions">
           <a
             href={pdfUrl}
@@ -86,16 +107,16 @@ export default function CurriculumSection({
             className="curriculum-open"
           >
             <FiExternalLink />
-            Abrir PDF
+            {t.open}
           </a>
 
           <a
             href={pdfUrl}
-            download="Curriculo_Mayra_Luiza.pdf"
+            download={t.filename}
             className="curriculum-download"
           >
             <FiDownload />
-            Baixar currículo
+            {t.download}
           </a>
         </div>
       </div>

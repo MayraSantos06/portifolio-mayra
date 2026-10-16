@@ -1,144 +1,231 @@
 
 import { useState } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
 import './ProjectsSection.css'
 
-type Category = 'Todos' | 'Web' | 'Aplicações' | 'Acadêmicos'
+type Category = 'Web' | 'Aplicações' | 'Acadêmicos'
+type Language = 'pt' | 'en'
+
+type LocalizedText = {
+  pt: string
+  en: string
+}
 
 type Project = {
   id: number
-  title: string
-  category: Exclude<Category, 'Todos'>
-  description: string
+  title: LocalizedText
+  category: Category
+  description: LocalizedText
   image: string
-  technologies: string[]
+  technologies: LocalizedText[]
   link?: string
 }
+
+// ======================================
+// CAMINHO DAS IMAGENS
+// ======================================
+
+const getImageUrl = (image: string) => {
+  return `${import.meta.env.BASE_URL}${image.replace(/^\/+/, '')}`
+}
+
+// ======================================
+// LISTA DE PROJETOS
+// ======================================
 
 const projects: Project[] = [
   {
     id: 1,
-    title: 'FiscalizaPlus',
-    category: 'Web',
-    description:
-      'Plataforma de gestão cívica para registrar e acompanhar problemas urbanos, utilizando fotos e geolocalização.',
-    image: '/images/fiscalizaplus.png',
-    technologies: ['Desenvolvimento Web', 'Geolocalização'],
-    link: 'https://fiscalizaplus.onrender.com/index.html',
+    title: {
+      pt: 'Cobrinha.zip',
+      en: 'Snake Game',
+    },
+    category: 'Acadêmicos',
+    description: {
+      pt: 'Jogo clássico da cobrinha desenvolvido em Python com Pygame.',
+      en: 'A classic Snake game developed in Python using Pygame.',
+    },
+    image: '/images/cobrinha.png',
+    technologies: [
+      { pt: 'Python', en: 'Python' },
+      { pt: 'Pygame', en: 'Pygame' },
+    ],
+    link: 'https://github.com/abneralmeidacord/snakegame-algoritmos-PUC',
   },
   {
     id: 2,
-    title: 'Gestor de Pedidos',
+    title: {
+      pt: 'Gestor de Pedidos',
+      en: 'Order Management System',
+    },
     category: 'Acadêmicos',
-    description:
-      'Sistema para gerenciamento de pedidos de uma serralheria, com controle de status e organização das informações.',
+    description: {
+      pt: 'Sistema para gerenciamento de pedidos de uma serralheria, com controle de status e organização das informações.',
+      en: 'An order management system for a metalworking business, featuring order status tracking and organized information.',
+    },
     image: '/images/gestao-pedidos.png',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
+    technologies: [
+      { pt: 'HTML', en: 'HTML' },
+      { pt: 'CSS', en: 'CSS' },
+      { pt: 'JavaScript', en: 'JavaScript' },
+    ],
   },
   {
     id: 3,
-    title: 'Portfólio ML+',
+    title: {
+      pt: 'UniVacinas',
+      en: 'UniVacinas',
+    },
     category: 'Web',
-    description:
-      'Portfólio pessoal com identidade visual inspirada em plataformas de streaming, desenvolvido com React e TypeScript.',
-    image: '/images/portfolio.png',
-    technologies: ['React', 'TypeScript', 'CSS'],
+    description: {
+      pt: 'Plataforma para acompanhamento da carteira de vacinas e estoque nos postos locais.',
+      en: 'Platform for tracking vaccination records and stock levels at local health centers.',
+    },
+    image: '/images/univacinas.png',
+    technologies: [
+      { pt: 'React', en: 'React' },
+      { pt: 'HTML', en: 'HTML' },
+      { pt: 'CSS', en: 'CSS' },
+      { pt: 'JavaScript', en: 'JavaScript' },
+    ],
   },
 ]
 
-const categories: Category[] = [
-  'Todos',
-  'Web',
-  'Aplicações',
-  'Acadêmicos',
-]
+// ======================================
+// TRADUÇÕES
+// ======================================
+
+const translations = {
+  pt: {
+    eyebrow: 'PRODUÇÕES ML',
+    title: 'Continue explorando',
+    subtitle:
+      'Conheça alguns dos projetos que desenvolvi ao longo da minha trajetória acadêmica.',
+    categories: {
+      Web: 'Web',
+      Aplicações: 'Aplicações',
+      Acadêmicos: 'Acadêmicos',
+    },
+    details: 'Ver detalhes',
+    relevant: '100% relevante',
+    closeDetails: 'Fechar detalhes',
+    accessProject: 'Acessar projeto',
+    imageAlt: 'Capa do projeto:',
+  },
+  en: {
+    eyebrow: 'ML+ ORIGINAL PRODUCTIONS',
+    title: 'Keep exploring',
+    subtitle:
+      'Explore some of the projects I have developed throughout my academic journey.',
+    categories: {
+      Web: 'Web',
+      Aplicações: 'Applications',
+      Acadêmicos: 'Academic',
+    },
+    details: 'View details',
+    relevant: '98% match',
+    closeDetails: 'Close details',
+    accessProject: 'Visit project',
+    imageAlt: 'Project cover:',
+  },
+}
+
+// ======================================
+// COMPONENTE PRINCIPAL
+// ======================================
 
 export default function ProjectsSection() {
-  const [selectedCategory, setSelectedCategory] =
-    useState<Category>('Todos')
+  const { language } = useLanguage()
+  const currentLanguage: Language = language
+  const t = translations[currentLanguage]
 
   const [selectedProject, setSelectedProject] =
     useState<Project | null>(null)
 
-  const filteredProjects = projects.filter(
-    (project) =>
-      selectedCategory === 'Todos' ||
-      project.category === selectedCategory
-  )
-
   return (
-    <section className="section projects-section" id="projetos">
+    <section
+      className="section projects-section"
+      id="projetos"
+    >
+      {/* CABEÇALHO */}
+
       <div className="section-heading">
-        <p className="eyebrow">PRODUÇÕES ML+ ORIGINAL</p>
+        <p className="eyebrow">
+          {t.eyebrow}
+        </p>
 
         <h2>
-          Continue explorando<span>.</span>
+          {t.title}<span>.</span>
         </h2>
 
-        <p>
-          Uma seleção de projetos que transformam ideias,
-          desafios e aprendizados em soluções.
-        </p>
+        <p>{t.subtitle}</p>
       </div>
 
-      <div className="projects-filters">
-        {categories.map((category) => (
-          <button
-            key={category}
-            type="button"
-            className={
-              selectedCategory === category ? 'active' : ''
-            }
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      {/* CARDS DOS PROJETOS */}
 
       <div className="projects-grid">
-        {filteredProjects.map((project) => (
-          <article className="project-card" key={project.id}>
+        {projects.map((project) => (
+          <article
+            className="project-card"
+            key={project.id}
+          >
             <div className="project-cover">
+
+              {/* IMAGEM DO PROJETO */}
+
               <img
-                src={project.image}
-                alt={`Capa do projeto ${project.title}`}
-                onError={(event) => {
-                  event.currentTarget.style.display = 'none'
+                src={getImageUrl(project.image)}
+                alt={`${t.imageAlt} ${project.title[currentLanguage]}`}
+                loading="lazy"
+                onError={() => {
+                  console.error(
+                    'Imagem não encontrada:',
+                    getImageUrl(project.image)
+                  )
                 }}
               />
 
-              <span className="project-original">ML+ ORIGINAL</span>
+              <span className="project-original">
+                ML+ ORIGINAL
+              </span>
+
+              {/* OVERLAY */}
 
               <div className="project-overlay">
                 <span className="project-category">
-                  {project.category}
+                  {t.categories[project.category]}
                 </span>
 
-                <h3>{project.title}</h3>
+                <h3>
+                  {project.title[currentLanguage]}
+                </h3>
 
                 <button
                   type="button"
                   className="project-details-button"
                   onClick={() => setSelectedProject(project)}
                 >
-                  ▶ Ver detalhes
+                  ▶ {t.details}
                 </button>
               </div>
             </div>
 
+            {/* RODAPÉ DO CARD */}
+
             <div className="project-card-footer">
-              <span className="project-match">98% relevante</span>
-              <span>{project.category}</span>
+              <span className="project-match">
+                {t.relevant}
+              </span>
+
+              <span>
+                {t.categories[project.category]}
+              </span>
             </div>
           </article>
         ))}
       </div>
 
-      {filteredProjects.length === 0 && (
-        <p className="projects-empty">
-          Nenhum projeto cadastrado nesta categoria ainda.
-        </p>
-      )}
+      {/* MODAL DE DETALHES */}
 
       {selectedProject && (
         <div
@@ -152,24 +239,33 @@ export default function ProjectsSection() {
             aria-labelledby="projects-modal-title"
             onClick={(event) => event.stopPropagation()}
           >
+            {/* BOTÃO FECHAR */}
+
             <button
               type="button"
               className="projects-modal-close"
               onClick={() => setSelectedProject(null)}
-              aria-label="Fechar detalhes"
+              aria-label={t.closeDetails}
             >
               ×
             </button>
 
+            {/* IMAGEM DO MODAL */}
+
             <div className="projects-modal-cover">
               <img
-                src={selectedProject.image}
-                alt=""
-                onError={(event) => {
-                  event.currentTarget.style.display = 'none'
+                src={getImageUrl(selectedProject.image)}
+                alt={`${t.imageAlt} ${selectedProject.title[currentLanguage]}`}
+                onError={() => {
+                  console.error(
+                    'Imagem do modal não encontrada:',
+                    getImageUrl(selectedProject.image)
+                  )
                 }}
               />
             </div>
+
+            {/* CONTEÚDO DO MODAL */}
 
             <div className="projects-modal-content">
               <span className="project-original">
@@ -177,16 +273,24 @@ export default function ProjectsSection() {
               </span>
 
               <h3 id="projects-modal-title">
-                {selectedProject.title}
+                {selectedProject.title[currentLanguage]}
               </h3>
 
-              <p>{selectedProject.description}</p>
+              <p>
+                {selectedProject.description[currentLanguage]}
+              </p>
+
+              {/* TECNOLOGIAS */}
 
               <div className="projects-technologies">
                 {selectedProject.technologies.map((technology) => (
-                  <span key={technology}>{technology}</span>
+                  <span key={technology.pt}>
+                    {technology[currentLanguage]}
+                  </span>
                 ))}
               </div>
+
+              {/* LINK DO PROJETO */}
 
               {selectedProject.link && (
                 <a
@@ -195,7 +299,7 @@ export default function ProjectsSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Acessar projeto ↗
+                  {t.accessProject} ↗
                 </a>
               )}
             </div>
