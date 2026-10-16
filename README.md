@@ -29,15 +29,15 @@ Na etapa inicial, foram desenvolvidos wireframes de média fidelidade no Figma p
 
 **Página inicial**
 
-![Wireframe da página inicial](public/images/wireframe-inicio.png)
+![Wireframe da página inicial](mayra-portifolio/public/images/wireframe-inicio.png)
 
 **Projetos**
 
-![Wireframe de projetos](public/images/wireframe-projetos.png)
+![Wireframe de projetos](mayra-portifolio/public/images/wireframe-projetos.png)
 
 **Experiências**
 
-![Wireframe de experiências](public/images/wireframe-experiencias.png)
+![Wireframe de experiências](mayra-portifolio/public/images/wireframe-experiencias.png)
 
 ### Protótipo
 
