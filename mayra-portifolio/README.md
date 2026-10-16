@@ -74,34 +74,38 @@ As versões e demais dependências estão disponíveis no arquivo `package.json`
 
 ## 5. Estrutura de diretórios
 
-Organização geral dos principais arquivos e diretórios da aplicação:
+O projeto está organizado da seguinte forma:
 
 ```text
-portifolio-mayra/
+mayra-portifolio/
 ├── api/
-│   └── letterboxd.js
 ├── public/
-│   └── images/
 ├── src/
-│   ├── components/
-│   ├── contexts/
-│   ├── data/
-│   ├── App.tsx
-│   └── main.tsx
+├── .gitignore
+├── README.md
+├── eslint.config.js
+├── image.png
 ├── index.html
-├── package.json
 ├── package-lock.json
-├── vite.config.ts
-└── README.md
+├── package.json
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
 ```
 
-- `api/`: funções serverless e integrações.
-- `public/`: imagens e arquivos estáticos.
-- `src/components/`: componentes da interface.
-- `src/contexts/`: gerenciamento de contexto e idioma.
-- `src/data/`: informações utilizadas pelas seções.
-- `App.tsx`: organização principal da aplicação.
-- `main.tsx`: inicialização do React.
+**Descrição dos principais diretórios e arquivos:**
+
+- `api/`: funções serverless utilizadas nas integrações externas.
+- `public/`: imagens e outros arquivos estáticos do portfólio.
+- `src/`: código-fonte da aplicação, incluindo componentes, estilos e funcionalidades.
+- `index.html`: arquivo HTML principal.
+- `package.json`: dependências e scripts do projeto.
+- `package-lock.json`: registro das versões instaladas das dependências.
+- `vite.config.ts`: configuração do Vite.
+- `tsconfig.json`, `tsconfig.app.json` e `tsconfig.node.json`: configurações do TypeScript.
+- `eslint.config.js`: configuração das regras de análise de código.
+- `README.md`: documentação do projeto.
 
 ## 6. Instalação e execução
 
