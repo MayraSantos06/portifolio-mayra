@@ -92,21 +92,23 @@ As versões e demais dependências estão disponíveis no arquivo `package.json`
 O projeto está organizado da seguinte forma:
 
 ```text
-mayra-portifolio/
-├── api/
-├── public/
-├── src/
-├── .gitignore
+portifolio-mayra/
 ├── README.md
-├── eslint.config.js
-├── image.png
-├── index.html
-├── package-lock.json
-├── package.json
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.node.json
-└── vite.config.ts
+├── .gitignore
+└── mayra-portifolio/
+    ├── api/
+    │   └── letterboxd.js
+    ├── public/
+    │   └── images/
+    ├── src/
+    ├── eslint.config.js
+    ├── index.html
+    ├── package.json
+    ├── package-lock.json
+    ├── tsconfig.app.json
+    ├── tsconfig.json
+    ├── tsconfig.node.json
+    └── vite.config.ts
 ```
 
 **Descrição dos principais diretórios e arquivos:**
