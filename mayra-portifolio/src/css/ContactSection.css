@@ -6,21 +6,17 @@
 .contact-section {
   position: relative;
   padding: 110px 6% 90px;
-
   background: radial-gradient(
     ellipse at 50% 60%,
     rgba(155, 23, 51, 0.14),
     transparent 65%
   );
-
   color: #f3f5f8;
   overflow: hidden;
   scroll-margin-top: 90px;
 }
 
-/* =====================================
-   INTRODUÇÃO
-===================================== */
+/* INTRODUÇÃO */
 
 .contact-intro {
   max-width: 750px;
@@ -55,49 +51,36 @@
   line-height: 1.8;
 }
 
-/* =====================================
-   INGRESSO — MOLDURA VINHO
-===================================== */
+/* MOLDURA DO INGRESSO */
 
 .vintage-ticket {
   position: relative;
   max-width: 1040px;
   margin: 0 auto;
   padding: 22px;
-
   background: #9e1b38;
-
   box-shadow:
     0 25px 70px rgba(0, 0, 0, 0.5),
     0 0 70px rgba(158, 27, 56, 0.13);
-
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .vintage-ticket:hover {
   transform: translateY(-5px);
-
   box-shadow:
     0 35px 90px rgba(0, 0, 0, 0.55),
     0 0 80px rgba(158, 27, 56, 0.2);
 }
-
-/* Recortes laterais do ingresso */
 
 .vintage-ticket::before,
 .vintage-ticket::after {
   content: "";
   position: absolute;
   top: 50%;
-
   width: 42px;
   height: 42px;
   border-radius: 50%;
-
   background: #211d2c;
-
   transform: translateY(-50%);
   z-index: 3;
 }
@@ -110,45 +93,30 @@
   right: -21px;
 }
 
-/* =====================================
-   INTERIOR — AZUL GRAFITE
-===================================== */
+/* INTERIOR */
 
 .vintage-ticket-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 160px;
-
   min-height: 600px;
-
   background: #252b3b;
   border: 2px solid #454c60;
-
   color: #f3f5f8;
 }
-
-/* =====================================
-   CONTEÚDO PRINCIPAL
-===================================== */
 
 .ticket-content {
   min-width: 0;
   padding: 35px 45px 40px;
-
   border-right: 2px dashed #647084;
 }
-
-/* Decoração superior */
 
 .ticket-decoration {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 12px;
   padding-bottom: 12px;
-
   border-bottom: 2px solid #454c60;
-
   color: #b7bfcd;
   font-size: 13px;
   font-weight: 900;
@@ -160,9 +128,7 @@
   font-size: 20px;
 }
 
-/* =====================================
-   TÍTULO DO INGRESSO
-===================================== */
+/* TÍTULO */
 
 .ticket-title {
   padding: 26px 0 20px;
@@ -178,15 +144,12 @@
 
 .ticket-title h3 {
   margin: 12px 0;
-
   color: #f3f5f8;
-
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(46px, 7vw, 78px);
   font-weight: 900;
   line-height: 0.92;
   letter-spacing: -2px;
-
   text-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -194,9 +157,7 @@
   display: flex;
   justify-content: center;
   gap: 14px;
-
   margin: 22px 0 16px;
-
   color: #d43d57;
 }
 
@@ -216,7 +177,6 @@
 .ticket-divider {
   height: 2px;
   margin: 10px 0 25px;
-
   background: linear-gradient(
     90deg,
     transparent,
@@ -225,9 +185,7 @@
   );
 }
 
-/* =====================================
-   FORMULÁRIO
-===================================== */
+/* FORMULÁRIO */
 
 .vintage-ticket-form {
   display: flex;
@@ -244,7 +202,6 @@
 .vintage-field {
   display: flex;
   flex-direction: column;
-
   min-width: 0;
   gap: 8px;
 }
@@ -256,26 +213,18 @@
   letter-spacing: 2px;
 }
 
-/* Campos */
-
 .vintage-field input,
 .vintage-field textarea {
   width: 100%;
   box-sizing: border-box;
-
   padding: 13px 14px;
-
   border: 1px solid #454c60;
   border-radius: 0;
-
   background: #1b202c;
   color: #f3f5f8;
-
   font: inherit;
   font-size: 14px;
-
   outline: none;
-
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
@@ -291,9 +240,7 @@
 .vintage-field textarea:focus {
   border-color: #8cc8e8;
   background: #202838;
-
-  box-shadow:
-    0 0 0 3px rgba(140, 200, 232, 0.09);
+  box-shadow: 0 0 0 3px rgba(140, 200, 232, 0.09);
 }
 
 .vintage-field textarea {
@@ -301,46 +248,40 @@
   resize: vertical;
 }
 
-/* =====================================
-   BOTÃO ENVIAR
-===================================== */
+/* BOTÃO */
 
 .vintage-submit {
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 12px;
   width: 100%;
-
   margin-top: 5px;
   padding: 17px 20px;
-
   border: 0;
   border-radius: 0;
-
   background: #9e1b38;
-  color: #ffffff;
-
+  color: #fff;
   font: inherit;
   font-size: 13px;
   font-weight: 900;
   letter-spacing: 2px;
-
   cursor: pointer;
-
   transition:
     background 0.25s ease,
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
 
-.vintage-submit:hover {
+.vintage-submit:hover:not(:disabled) {
   background: #bf2446;
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(158, 27, 56, 0.25);
+}
 
-  box-shadow:
-    0 8px 24px rgba(158, 27, 56, 0.25);
+.vintage-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .vintage-submit:focus-visible {
@@ -355,23 +296,46 @@
 
 .ticket-notice {
   margin: 0;
-
   color: #b7bfcd;
   font-size: 13px;
   line-height: 1.5;
   text-align: center;
 }
 
-/* =====================================
-   CANHOTO DESTACÁVEL
-===================================== */
+.ticket-feedback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 13px;
+  text-align: center;
+}
+
+.ticket-feedback--success {
+  color: #a9e3bb;
+}
+
+.ticket-feedback--error,
+.ticket-feedback--config {
+  color: #ff9a9a;
+}
+
+.contact-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* CANHOTO DESTACÁVEL */
 
 .ticket-stub-vintage {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
   padding: 28px 15px;
   text-align: center;
 }
@@ -380,9 +344,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-
   color: #f3f5f8;
-
   font-family: Georgia, "Times New Roman", serif;
   font-size: 20px;
   font-weight: 900;
@@ -403,10 +365,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   gap: 12px;
   width: 100%;
-
   color: #b7bfcd;
   font-weight: 900;
   letter-spacing: 2px;
@@ -417,13 +377,10 @@
   font-size: 30px;
 }
 
-/* Código de barras */
-
 .vintage-barcode {
   width: 75px;
   height: 105px;
   margin-top: 10px;
-
   background: repeating-linear-gradient(
     90deg,
     #b7bfcd 0 2px,
@@ -440,17 +397,52 @@
   letter-spacing: 1px;
 }
 
-/* =====================================
-   RODAPÉ
-===================================== */
+/* REDES SOCIAIS */
+
+.contact-social {
+  margin: 48px auto 0;
+  text-align: center;
+}
+
+.contact-social > span {
+  color: #b7bfcd;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.contact-social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-social-links a {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #454c60;
+  background: #252b3b;
+  color: #8cc8e8;
+  font-size: 20px;
+  transition: 0.25s ease;
+}
+
+.contact-social-links a:hover {
+  transform: translateY(-4px);
+  border-color: #d43d57;
+  color: #d43d57;
+}
+
+/* RODAPÉ */
 
 .contact-footer {
   display: flex;
   justify-content: center;
   gap: 10px;
-
   margin-top: 55px;
-
   font-size: 12px;
   letter-spacing: 5px;
 }
@@ -463,9 +455,7 @@
   color: #d43d57;
 }
 
-/* =====================================
-   RESPONSIVIDADE — TABLET
-===================================== */
+/* RESPONSIVIDADE */
 
 @media (max-width: 760px) {
   .contact-section {
@@ -486,7 +476,6 @@
 
   .ticket-content {
     padding: 25px 20px;
-
     border-right: none;
     border-bottom: 2px dashed #647084;
   }
@@ -536,10 +525,6 @@
     letter-spacing: 2px;
   }
 }
-
-/* =====================================
-   RESPONSIVIDADE — CELULAR
-===================================== */
 
 @media (max-width: 480px) {
   .contact-section {
@@ -606,15 +591,12 @@
   }
 }
 
-/* =====================================
-   ACESSIBILIDADE
-===================================== */
-
 @media (prefers-reduced-motion: reduce) {
   .vintage-ticket,
   .vintage-submit,
   .vintage-field input,
-  .vintage-field textarea {
+  .vintage-field textarea,
+  .contact-social-links a {
     transition: none;
   }
 }

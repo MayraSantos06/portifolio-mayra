@@ -1,257 +1,324 @@
 
-import { useState, type FormEvent } from 'react'
-import { FiArrowRight, FiMail, FiStar } from 'react-icons/fi'
-import { useLanguage } from '../contexts/LanguageContext'
-import './ContactSection.css'
+import { useState, type FormEvent, type ChangeEvent } from "react";
+import emailjs from "@emailjs/browser";
+import {
+  FaStar,
+  FaPaperPlane,
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaCheckCircle,
+  FaExclamationCircle,
+} from "react-icons/fa";
+import "../css/ContactSection.css";
 
-const translations = {
+type Props = {
+  language?: "pt" | "en";
+};
+
+type FormValues = {
+  name: string;
+  email: string;
+  message: string;
+  website: string;
+};
+
+const initialValues: FormValues = {
+  name: "",
+  email: "",
+  message: "",
+  website: "",
+};
+
+const copy = {
   pt: {
-    eyebrow: 'ML+ ORIGINAL · ÚLTIMA CENA',
-    heading1: 'O próximo capítulo',
-    heading2: 'começa',
-    headingHighlight: 'aqui.',
-    introduction:
-      'Toda boa história começa com uma conexão. Tem uma oportunidade, um projeto ou uma ideia? Garanta seu ingresso para uma nova conversa.',
-    presents: 'APRESENTA',
-    ticketSubtitle: 'INGRESSO PARA UMA NOVA CONEXÃO',
-    nameLabel: 'NOME DO CONVIDADO',
-    namePlaceholder: 'Seu nome',
-    emailLabel: 'E-MAIL',
-    emailPlaceholder: 'seu@email.com',
-    subjectLabel: 'TÍTULO DA HISTÓRIA',
-    subjectPlaceholder: 'Qual é o assunto?',
-    messageLabel: 'ESCREVA O PRÓXIMO CAPÍTULO',
-    messagePlaceholder: 'Sua mensagem começa aqui...',
-    submit: 'ENVIAR MENSAGEM',
-    notice:
-      'Seu aplicativo de e-mail foi solicitado. Confirme o envio da mensagem por lá.',
-    emailName: 'Nome',
+    eyebrow: "CONTATO • ML+",
+    heading: "Sua próxima história começa aqui.",
+    description:
+      "Toda grande produção começa com uma conversa. Tem uma oportunidade, ideia ou projeto? Envie sua mensagem.",
+    edition: "EDIÇÃO ESPECIAL • 2026",
+    title: "CONTATO",
+    subtitle: "UM CONVITE PARA CRIAR ALGO NOVO",
+    name: "SEU NOME",
+    email: "SEU E-MAIL",
+    message: "SUA MENSAGEM",
+    namePlaceholder: "Como posso te chamar?",
+    emailPlaceholder: "seu@email.com",
+    messagePlaceholder: "Conte sua ideia...",
+    send: "ENVIAR INGRESSO",
+    sending: "ENVIANDO...",
+    success: "Mensagem enviada com sucesso!",
+    error: "Não foi possível enviar sua mensagem.",
+    config: "Configure as variáveis do EmailJS.",
+    notice: "Sua mensagem será enviada diretamente para meu e-mail.",
+    social: "ENCONTRE-ME TAMBÉM",
+    admission: "ADMIT ONE",
+    ticket: "ML+",
+    stub: "SEU CONVITE",
+    footer: "THE NEXT CHAPTER STARTS HERE",
   },
   en: {
-    eyebrow: 'ML+ ORIGINAL · FINAL SCENE',
-    heading1: 'The next chapter',
-    heading2: 'starts',
-    headingHighlight: 'here.',
-    introduction:
-      'Every great story begins with a connection. Have an opportunity, a project, or an idea? Get your ticket to a new conversation.',
-    presents: 'PRESENTS',
-    ticketSubtitle: 'YOUR TICKET TO A NEW CONNECTION',
-    nameLabel: 'GUEST NAME',
-    namePlaceholder: 'Your name',
-    emailLabel: 'EMAIL',
-    emailPlaceholder: 'you@example.com',
-    subjectLabel: 'STORY TITLE',
-    subjectPlaceholder: 'What is this about?',
-    messageLabel: 'WRITE THE NEXT CHAPTER',
-    messagePlaceholder: 'Your message starts here...',
-    submit: 'SEND MESSAGE',
-    notice:
-      'Your email application has been requested. Please confirm and send the message there.',
-    emailName: 'Name',
+    eyebrow: "CONTACT • ML+",
+    heading: "Your next story starts here.",
+    description:
+      "Every great production starts with a conversation. Have an opportunity, idea or project? Send your message.",
+    edition: "SPECIAL EDITION • 2026",
+    title: "CONTACT",
+    subtitle: "AN INVITATION TO CREATE SOMETHING NEW",
+    name: "YOUR NAME",
+    email: "YOUR EMAIL",
+    message: "YOUR MESSAGE",
+    namePlaceholder: "What should I call you?",
+    emailPlaceholder: "your@email.com",
+    messagePlaceholder: "Tell me about your idea...",
+    send: "SEND TICKET",
+    sending: "SENDING...",
+    success: "Message sent successfully!",
+    error: "Your message could not be sent.",
+    config: "Configure the EmailJS environment variables.",
+    notice: "Your message will be sent directly to my email.",
+    social: "FIND ME ALSO",
+    admission: "ADMIT ONE",
+    ticket: "ML+",
+    stub: "YOUR INVITATION",
+    footer: "THE NEXT CHAPTER STARTS HERE",
   },
-}
+};
 
-export default function ContactSection() {
-  const { language } = useLanguage()
-  const t = translations[language]
+export default function ContactSection({ language = "pt" }: Props) {
+  const t = copy[language];
 
-  const [nome, setNome] = useState('')
-  const [email, setEmail] = useState('')
-  const [assunto, setAssunto] = useState('')
-  const [mensagem, setMensagem] = useState('')
-  const [aviso, setAviso] = useState(false)
+  const [values, setValues] = useState<FormValues>(initialValues);
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<"success" | "error" | "config" | "">("");
 
-  function enviarMensagem(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setValues((prev) => ({ ...prev, [name]: value }));
+    setStatus("");
+  };
 
-    const destinatario = 'luizamayra2006@gmail.com'
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (sending || values.website.trim()) return;
 
-    const corpo = [
-      `${t.emailName}: ${nome}`,
-      `E-mail: ${email}`,
-      '',
-      mensagem,
-    ].join('\n')
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    const link = `mailto:${destinatario}?subject=${encodeURIComponent(
-      assunto
-    )}&body=${encodeURIComponent(corpo)}`
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus("config");
+      return;
+    }
 
-    window.location.href = link
-    setAviso(true)
-  }
+    setSending(true);
+    setStatus("");
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: values.name.trim(),
+          email: values.email.trim(),
+          message: values.message.trim(),
+          from_name: values.name.trim(),
+          from_email: values.email.trim(),
+          reply_to: values.email.trim(),
+          title: `Nova mensagem ML+ - ${values.name.trim()}`,
+          time: new Date().toLocaleString("pt-BR"),
+        },
+        { publicKey, blockHeadless: true }
+      );
+
+      setStatus("success");
+      setValues(initialValues);
+    } catch (error) {
+      console.error("Erro no EmailJS:", error);
+      setStatus("error");
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <section className="contact-section" id="contato">
       <div className="contact-intro">
-        <span className="contact-eyebrow">
-          {t.eyebrow}
-        </span>
-
+        <span className="contact-eyebrow">{t.eyebrow}</span>
         <h2>
-          {t.heading1}
-          <br />
-          {t.heading2} <span>{t.headingHighlight}</span>
+          {t.heading.split(" ").slice(0, -2).join(" ")}{" "}
+          <span>{t.heading.split(" ").slice(-2).join(" ")}</span>
         </h2>
-
-        <p>{t.introduction}</p>
+        <p>{t.description}</p>
       </div>
 
       <div className="vintage-ticket">
         <div className="vintage-ticket-inner">
           <div className="ticket-content">
             <div className="ticket-decoration">
-              <span>★</span>
-              <span>ML+ ORIGINAL</span>
-              <span>★</span>
+              <span>✦</span>
+              <span>ML+ ORIGINAL PRODUCTION</span>
+              <span>✦</span>
             </div>
 
             <div className="ticket-title">
-              <span className="ticket-edition">
-                {t.presents}
-              </span>
-
-              <h3>
-                NEXT
-                <br />
-                CHAPTER
-              </h3>
-
-              <div className="ticket-stars">
-                <FiStar />
-                <FiStar />
-                <FiStar />
+              <span className="ticket-edition">{t.edition}</span>
+              <h3>{t.title}</h3>
+              <div className="ticket-stars" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map((n) => (
+                  <FaStar key={n} />
+                ))}
               </div>
-
-              <p>{t.ticketSubtitle}</p>
+              <p>{t.subtitle}</p>
             </div>
 
             <div className="ticket-divider" />
 
-            <form
-              className="vintage-ticket-form"
-              onSubmit={enviarMensagem}
-            >
+            <form className="vintage-ticket-form" onSubmit={handleSubmit}>
               <div className="vintage-form-row">
                 <div className="vintage-field">
-                  <label htmlFor="contact-name">
-                    {t.nameLabel}
-                  </label>
-
+                  <label htmlFor="ticket-name">{t.name}</label>
                   <input
-                    id="contact-name"
+                    id="ticket-name"
+                    name="name"
                     type="text"
+                    autoComplete="name"
+                    maxLength={100}
                     placeholder={t.namePlaceholder}
-                    value={nome}
-                    onChange={(event) =>
-                      setNome(event.target.value)
-                    }
+                    value={values.name}
+                    onChange={handleChange}
                     required
                   />
                 </div>
 
                 <div className="vintage-field">
-                  <label htmlFor="contact-email">
-                    {t.emailLabel}
-                  </label>
-
+                  <label htmlFor="ticket-email">{t.email}</label>
                   <input
-                    id="contact-email"
+                    id="ticket-email"
+                    name="email"
                     type="email"
+                    autoComplete="email"
+                    maxLength={254}
                     placeholder={t.emailPlaceholder}
-                    value={email}
-                    onChange={(event) =>
-                      setEmail(event.target.value)
-                    }
+                    value={values.email}
+                    onChange={handleChange}
                     required
                   />
                 </div>
               </div>
 
               <div className="vintage-field">
-                <label htmlFor="contact-subject">
-                  {t.subjectLabel}
-                </label>
-
-                <input
-                  id="contact-subject"
-                  type="text"
-                  placeholder={t.subjectPlaceholder}
-                  value={assunto}
-                  onChange={(event) =>
-                    setAssunto(event.target.value)
-                  }
+                <label htmlFor="ticket-message">{t.message}</label>
+                <textarea
+                  id="ticket-message"
+                  name="message"
+                  rows={5}
+                  maxLength={2000}
+                  placeholder={t.messagePlaceholder}
+                  value={values.message}
+                  onChange={handleChange}
                   required
                 />
               </div>
 
-              <div className="vintage-field">
-                <label htmlFor="contact-message">
-                  {t.messageLabel}
-                </label>
-
-                <textarea
-                  id="contact-message"
-                  placeholder={t.messagePlaceholder}
-                  rows={4}
-                  value={mensagem}
-                  onChange={(event) =>
-                    setMensagem(event.target.value)
-                  }
-                  required
+              <div className="contact-honeypot" aria-hidden="true">
+                <label htmlFor="ticket-website">Website</label>
+                <input
+                  id="ticket-website"
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={values.website}
+                  onChange={handleChange}
                 />
               </div>
 
               <button
                 type="submit"
                 className="vintage-submit"
+                disabled={sending}
               >
-                <FiMail />
-                {t.submit}
-                <FiArrowRight />
+                <FaPaperPlane aria-hidden="true" />
+                {sending ? t.sending : t.send}
               </button>
 
-              {aviso && (
-                <p className="ticket-notice" role="status">
-                  {t.notice}
+              {status && (
+                <p
+                  className={`ticket-feedback ticket-feedback--${status}`}
+                  role="status"
+                  aria-live="polite"
+                >
+                  {status === "success" ? (
+                    <FaCheckCircle aria-hidden="true" />
+                  ) : (
+                    <FaExclamationCircle aria-hidden="true" />
+                  )}
+                  {status === "success"
+                    ? t.success
+                    : status === "config"
+                    ? t.config
+                    : t.error}
                 </p>
               )}
+
+              <p className="ticket-notice">{t.notice}</p>
             </form>
           </div>
 
           <aside className="ticket-stub-vintage">
             <div className="stub-heading">
-              <span>ADMIT</span>
-              <strong>ONE</strong>
+              <span>{t.admission}</span>
+              <strong>{t.ticket}</strong>
             </div>
 
-            <div
-              className="stub-stars"
-              aria-hidden="true"
-            >
-              ★
-              <br />
-              ★
-              <br />
-              ★
-            </div>
+            <span className="stub-stars" aria-hidden="true">✦</span>
 
             <div className="stub-bottom">
-              <span>ML+</span>
-              <span>2026</span>
-
-              <div
-                className="vintage-barcode"
-                aria-hidden="true"
-              />
-
-              <small>NO. 000001</small>
+              <span>★</span>
+              <span>{t.stub}</span>
+              <div className="vintage-barcode" aria-hidden="true" />
+              <small>ML+ • 2026</small>
             </div>
           </aside>
         </div>
       </div>
 
-      
+      <div className="contact-social">
+        <span>{t.social}</span>
+        <div className="contact-social-links">
+          <a
+            href="https://github.com/MayraSantos06"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <FaGithub />
+          </a>
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedin />
+          </a>
+          <a
+            href="mailto:luizamayra2006@gmail.com"
+            aria-label="E-mail"
+          >
+            <FaEnvelope />
+          </a>
+        </div>
+      </div>
+
+      <div className="contact-footer">
+        <span>✦</span>
+        <strong>{t.footer}</strong>
+        <span>✦</span>
+      </div>
     </section>
-  )
+  );
 }
